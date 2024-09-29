@@ -1,0 +1,15 @@
+<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="160" cy="160" r="135.643" stroke="#DBDBB8" stroke-width="3" stroke-dasharray="6 6"/>
+<circle cx="160" cy="160" r="158.5" stroke="#DBDBB8" stroke-width="3" stroke-dasharray="6 6"/>
+<circle cx="160" cy="160" r="112.786" stroke="#DBDBB8" stroke-width="3" stroke-dasharray="6 6"/>
+<circle cx="160" cy="160" r="89.9286" stroke="#DBDBB8" stroke-width="3" stroke-dasharray="6 6"/>
+<circle cx="160" cy="160" r="67.0714" stroke="#DBDBB8" stroke-width="3" stroke-dasharray="6 6"/>
+<circle cx="160" cy="160" r="44.2143" stroke="#DBDBB8" stroke-width="3" stroke-dasharray="6 6"/>
+<circle cx="160" cy="160" r="21.3571" stroke="#DBDBB8" stroke-width="3" stroke-dasharray="6 6"/>
+<circle cx="106.057" cy="265.143" r="4.57143" fill="#E21ECF"/>
+<circle cx="315.429" cy="157.257" r="4.57143" fill="#1EEDE0"/>
+<ellipse cx="123.428" cy="182.857" rx="9.14286" ry="9.14286" fill="#92ED1E"/>
+<circle cx="77.2571" cy="116.571" r="2.28571" fill="#DC0EA2" fill-opacity="0.63"/>
+<path d="M53.8571 77.7143C53.8571 89.7857 44.0713 99.5715 32 99.5715C19.9286 99.5715 10.1428 89.7857 10.1428 77.7143C10.1428 65.643 19.9286 55.8572 32 55.8572C44.0713 55.8572 53.8571 65.643 53.8571 77.7143Z" fill="#ECECDA" stroke="#DBDBB8" stroke-width="2"/>
+<circle cx="25.1428" cy="77.2572" r="15" fill="#DBDBB8" stroke="#DBDBB8" stroke-width="2"/>
+</svg>
