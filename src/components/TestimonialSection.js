@@ -84,7 +84,7 @@ const TestimonialSection = () => {
   const t3 = getTestimonial(testimonialIndex + 2);
 
   return (
-    <div className="bg-primary">
+    <div className="bg-background">
       <section className="bg-silver p-5 md:px-[140px] md:py-10 rounded-t-[30px]">
         {/* Testimonial header */}
         <div className="flex justify-between">
