@@ -50,8 +50,13 @@ const TestimonialSection = () => {
   const t3 = getTestimonial(testimonialIndex + 2);
 
   return (
+<<<<<<< HEAD
     <div className="bg-primary">
       <section className="bg-background p-5 md:px-[140px] md:py-10 rounded-t-[30px]">
+=======
+    <div className="bg-background">
+      <section className="bg-silver p-5 md:px-[140px] md:py-10 rounded-t-[30px]">
+>>>>>>> 6be47363afca96a30a1bb7485c422655444990b7
         {/* Testimonial header */}
         <div className="flex justify-between">
           <h2 className="font-roboto font-bold text-darker-blue text-2xl md:text-3xl">
