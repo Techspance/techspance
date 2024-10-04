@@ -54,12 +54,12 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="Technology-header min-w-[320px] max-w-[450px] bg-silver ">
+    <div className="Technology-header min-w-[320px] max-w-[450px] bg-background  ">
       <h2 className="font-roboto font-bold text-darker-blue text-2xl md:text-3xl mb-5 ">
         Techspance's <span className="text-primary italic">FAQs</span>
       </h2>
 
-      <div className="w-full max-w-md  mb-2 flex justify-center flex-wrap  ">
+      <div className="w-full max-w-md mx-auto  mb-2 flex justify-center flex-wrap  ">
         {faqs.map((faq, index) => (
           <div key={index} className="   shadow ">
             {/* Clickable Question */}
@@ -67,7 +67,7 @@ const FAQSection = () => {
               onClick={() => handleToggle(index)}
               className={`w-full text-left p-4 font-bold text-darker-blue text-md focus:outline-none flex justify-between items-center border border-collapse ${
                 openIndex === index
-                  ? "bg-secondary text-lg border-b-0 text-dark-blue"
+                  ? "bg-background text-lg border-b-0 text-dark-blue"
                   : ""
               } 
               } `}
@@ -82,7 +82,7 @@ const FAQSection = () => {
             <div
               className={`transition-all duration-300 overflow-hidden ${
                 openIndex === index
-                  ? "max-h-40 border border-collapse bg-secondary"
+                  ? "max-h-40 border border-collapse bg-white"
                   : "max-h-0"
               }`}
             >
@@ -91,7 +91,7 @@ const FAQSection = () => {
           </div>
         ))}
       </div>
-      <Link href="./client/company/faqs" className="flex items-center text-dark-blue hover:text-primary text-lg" >
+      <Link href="./client/company/faqs" className="flex items-center text-dark-blue hover:text-primary text-lg w-content " >
         See More <IoIosArrowForward className="mt-1.5 ml-2" />{" "}
       </Link>
     </div>

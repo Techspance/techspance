@@ -19,7 +19,7 @@ const ArticleCard = ({ article }) => {
   } = article;
   return (
     <Link href={`/client/blog/${id}`}>
-      <div className="article-card flex flex-col md:flex-row w-[320px] md:w-[500px] h-[300px] md:h-[160px]  shadow-lg my-3 bg-white   rounded-xl  ">
+      <div className="article-card flex flex-col md:flex-row w-[320px] md:w-[500px] h-[300px] md:h-[160px]  shadow-xl my-3 bg-white   rounded-xl  ">
         <Image
           src={image}
           alt={title}

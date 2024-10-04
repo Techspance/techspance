@@ -1,68 +1,34 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa6";
 import TestimonialCard from "./TestimonialCard";
 
-import herocontainer from "@/assets/images/herocontainer.svg";
-import heromiddle from "@/assets/images/heromiddle.svg";
-
-// Replace with actual testimonial data
-const testimonials = [
-  {
-    name: "startup delivering tailored IT ",
-    title: "CEO of Company",
-    testimonial_text:
-      "A leading startup delivering tailored IT solutions for businesses worldwide. Empowering your business with custom software, web development, and mobile app development.",
-    image: "",
-  },
-  {
-    name: "startup delivering tailored IT",
-    title: "Marketing Manager",
-    testimonial_text:
-      "A leading startup delivering tailored IT solutions for businesses worldwide. Empowering your business with custom software, web development, and mobile app development.",
-    image: herocontainer,
-  },
-  {
-    name: "startup delivering tailored IT",
-    title: "Product Designer",
-    testimonial_text:
-      "A leading startup delivering tailored IT solutions for businesses worldwide. Empowering your business with custom software, web development, and mobile app development.",
-    image: "",
-  },
-  {
-    name: "4",
-    title: "Software Engineer",
-    testimonial_text: "Exceptional quality and support.",
-    image: "",
-  },
-  {
-    name: "5",
-    title: "CEO of Company",
-    testimonial_text: "This is a great service!",
-    image: heromiddle,
-  },
-  {
-    name: "6",
-    title: "Marketing Manager",
-    testimonial_text: "Highly recommend this to everyone.",
-    image: "",
-  },
-  {
-    name: "7",
-    title: "Product Designer",
-    testimonial: "A game-changer in the industry.",
-    image: "",
-  },
-  {
-    name: "8",
-    title: "Software Engineer",
-    testimonial_text: "Exceptional quality and support.",
-    image: "",
-  },
-];
-
 const TestimonialSection = () => {
+  const [testimonials, setTestimonials] = useState([]); // State for testimonials
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [loading, setLoading] = useState(true); // Loading state
+
+  // Fetch testimonials from the API
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await fetch("./api/testimonials"); // Ensure correct endpoint
+        const data = await response.json();
+
+        if (data.success) {
+          setTestimonials(data.data); // Set testimonials state with fetched data
+        } else {
+          console.error("Failed to fetch testimonials:", data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching testimonials:", error);
+      } finally {
+        setLoading(false); // Set loading to false after fetch
+      }
+    };
+
+    fetchTestimonials();
+  }, []); // Empty dependency array to run once on mount
 
   const handleNext = () => {
     setTestimonialIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
@@ -85,46 +51,52 @@ const TestimonialSection = () => {
 
   return (
     <div className="bg-primary">
-      <section className="bg-silver p-5 md:px-[140px] md:py-10 rounded-t-[30px]">
+      <section className="bg-background p-5 md:px-[140px] md:py-10 rounded-t-[30px]">
         {/* Testimonial header */}
         <div className="flex justify-between">
           <h2 className="font-roboto font-bold text-darker-blue text-2xl md:text-3xl">
-            Client{" "}
-            <span className="text-primary italic">
-              Testimonials
-            </span>
+            Client <span className="text-primary italic">Testimonials</span>
           </h2>
-          <div className="flex justify-around w-[80px] md:w-[100px]">
+          {!loading? <div className="flex justify-around w-[80px] md:w-[100px]">
             <button
               onClick={handlePrev}
               type="button"
               aria-label="Previous testimonial"
-              className="prev-btn size-[32px]  flex justify-center items-center bg-secondary hover:bg-primary rounded-full text-darker-blue hover:text-white"
+              className="prev-btn size-[32px] flex justify-center items-center bg-white hover:bg-primary rounded-full text-darker-blue hover:text-white"
             >
-              <FaLessThan className="w-[10px] h-[24px]" />
+              <FaLessThan className="w-[10px] " />
             </button>
             <button
               onClick={handleNext}
               aria-label="Next testimonial"
               type="button"
-              className="next-btn size-[32px]  flex justify-center items-center bg-secondary hover:bg-primary rounded-full text-darker-blue hover:text-white"
+              className="next-btn size-[32px] flex justify-center items-center bg-white hover:bg-primary rounded-full text-darker-blue hover:text-white"
             >
-              <FaGreaterThan className="w-[10px] h-[24px]" />
+              <FaGreaterThan className="w-[10px]" />
             </button>
-          </div>
+          </div>: null}
+          
         </div>
 
         {/* Testimonial cards */}
         <div className="flex justify-center md:justify-between">
-          <div className="flex">
-            <TestimonialCard testimonial={t1} />
-          </div>
-          <div className="hidden md:flex">
-            <TestimonialCard testimonial={t2} />
-          </div>
-          <div className="hidden lg:flex">
-            <TestimonialCard testimonial={t3} />
-          </div>
+          {loading ? (
+            <div className=" font-bold text-2xl text-dark-blue  rounded-full animate-pulse md:self-center p-5">
+              Loading testimonials...
+            </div> // Loading message
+          ) : (
+            <>
+              <div className="flex">
+                <TestimonialCard testimonial={t1} />
+              </div>
+              <div className="hidden md:flex">
+                <TestimonialCard testimonial={t2} />
+              </div>
+              <div className="hidden lg:flex">
+                <TestimonialCard testimonial={t3} />
+              </div>
+            </>
+          )}
         </div>
       </section>
     </div>
