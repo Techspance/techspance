@@ -311,7 +311,7 @@ const page = () => {
         <Image src={hline} alt="horizontal line" className="  w-[50%] mx-auto " />
 
         <Link
-          href="./client/contact"
+          href="./pages/contact"
           className=" border-2 border-primary rounded-full px-5 py-1 text-darker-blue hover:bg-primary hover:text-white mx-auto  "
         >
           Get Started

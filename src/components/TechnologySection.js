@@ -50,7 +50,7 @@ const TechnologySection = () => {
           })}
         </ul>
         <Link
-          href="./services/process"
+          href="./pages/services/#process"
           className="px-10 py-2 text-dark-blue bg-white border-2 border-primary rounded-full hover:bg-primary hover:text-white "
         >
           How We Work

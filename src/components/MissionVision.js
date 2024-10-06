@@ -71,7 +71,7 @@ const MissionVision = () => {
           and innovations
         </p>
         <Link
-          href="./company/aboutus"
+          href="./pages/company/aboutus"
           className=" px-12 py-2   bg-primary text-secondary hover:bg-darker-blue hover:text-white rounded-full text-center text-sm "
         >
           More About Us

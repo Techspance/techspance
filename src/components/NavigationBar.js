@@ -11,22 +11,22 @@ export const navItems = [
   { name: "Home", href: "/", id: 1 },
   {
     name: "Company",
-    href: "/client/company/aboutus",
+    href: "/pages/company/aboutus",
     id: 2,
     hasDropdown: true,
   }, // Add hasDropdown property
-  { name: "Services", href: "/client/services", id: 3 },
-  { name: "Portfolio", href: "/client/portfolio", id: 4 },
-  { name: "Blog", href: "/client/blog", id: 5 },
-  { name: "Contact", href: "/client/contact", id: 6 },
+  { name: "Services", href: "/pages/services", id: 3 },
+  { name: "Portfolio", href: "/pages/portfolio", id: 4 },
+  { name: "Blog", href: "/pages/blog", id: 5 },
+  { name: "Contact", href: "/pages/contact", id: 6 },
 ];
 
 const dropdownItems = [
-  { name: "About Us", href: "/client/company/aboutus", id: 1 },
-  { name: "Our Team", href: "/client/company/ourteam", id: 2 },
-  { name: "Our History", href: "/client/company/ourhistory", id: 3 },
-  { name: "FAQs", href: "/client/company/faqs", id: 4 },
-  { name: "Careers", href: "/client/company/careers", id: 5 },
+  { name: "About Us", href: "/pages/company/aboutus", id: 1 },
+  { name: "Our Team", href: "/pages/company/ourteam", id: 2 },
+  { name: "Our History", href: "/pages/company/ourhistory", id: 3 },
+  { name: "FAQs", href: "/pages/company/faqs", id: 4 },
+  { name: "Careers", href: "/pages/company/careers", id: 5 },
 ];
 
 const Header = () => {

@@ -46,7 +46,7 @@ const CTA = () => {
       <div className=" self-center ">
         <Link
           className="text-white text-md hover:bg-darker-blue border-2 hover:border-darker-blue rounded-full px-5 py-2 "
-          href="./client/contact"
+          href="./pages/contact"
         >
           Get Information
         </Link>
@@ -65,8 +65,8 @@ const TeamSection = () => {
         <TeamCard />
       </div>
       <div className=" my-5 ">
-        <Link href="./client/company/#teams" className=" px-5 py-1 rounded-full bg-primary hover:bg-darker-blue border-primary border-2 text-secondary hover:text-white w-[140px] " >See All Team</Link>
-        <Link href="./client/company/#careers" className=" px-5 py-1 rounded-full hover:bg-primary  border-primary border-2 text-darker-blue hover:text-white w-[140px] " >Join Our Team</Link>
+        <Link href="./pages/company/#teams" className=" px-5 py-1 rounded-full bg-primary hover:bg-darker-blue border-primary border-2 text-secondary hover:text-white w-[140px] " >See All Team</Link>
+        <Link href="./pages/company/#careers" className=" px-5 py-1 rounded-full hover:bg-primary  border-primary border-2 text-darker-blue hover:text-white w-[140px] " >Join Our Team</Link>
       </div>
     </section>
   )
