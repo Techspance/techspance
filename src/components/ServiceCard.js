@@ -7,7 +7,7 @@ const ServiceCard = ({ detail }) => {
   const { name, description, image, link } = detail;
 
   return (
-    <article className="service-card mt-5 rounded-3xl bg-white shadow w-[320px]">
+    <article className="service-card mt-5 rounded-3xl bg-white shadow-3xl  w-[320px] ">
       <Image
         src={image}
         alt={`${name} image`}
