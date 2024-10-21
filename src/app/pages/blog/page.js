@@ -16,6 +16,7 @@ import {
   FaLinkedinIn,
 } from 'react-icons/fa';
 import { FaRegEye } from 'react-icons/fa6';
+import { TbBrandGithubFilled } from 'react-icons/tb';
 
 import BlogPaginate from './blogPaginate';
 
@@ -43,6 +44,7 @@ const url = './api/blogs';
 const page = () => {
   const [blogsData, setBlogsData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [error, setError] = useState(null);
 
   const url = 'http://localhost:3000/api/blogs'; // Ensure this URL is correct
@@ -85,9 +87,18 @@ const page = () => {
     return daysPassed;
   };
 
-  const filteredPosts = blogsData.filter((post) =>
-    post.title.toLowerCase().includes(searchTerm.toLowerCase()),
-  );
+  const categoryCounts = blogsData.reduce((acc, post) => {
+    acc[post.category] = (acc[post.category] || 0) + 1;
+    return acc;
+  }, {});
+
+  const categories = [...new Set(blogsData.map((post) => post.category))];
+
+  const filteredPosts = selectedCategory
+    ? blogsData.filter((post) => post.category === selectedCategory)
+    : searchTerm
+    ? blogsData.filter((post) => post.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    : blogsData;
 
   return (
     <div className="blog-page p-5 md:px-[140px] md:py-10 text-[#0e2f56] bg-background">
@@ -187,7 +198,7 @@ const page = () => {
           <BlogPaginate blogPosts={filteredPosts} />
         </main>
 
-        <aside className="right-side-panel w-full md:w-1/3 bg-white p-4 rounded-lg shadow-md">
+        <aside className="right-side-panel flex flex-col gap-4 w-full md:w-[30%] py-2">
           <div className="mb-4">
             <h4 className="font-bold">SEARCH</h4>
             <input
@@ -211,11 +222,11 @@ const page = () => {
                 .map((post, index) => (
                   <li
                     key={index}
-                    className="flex items-center justify-between py-2"
+                    className="flex items-center justify-between py-2 border-b-[1px]"
                   >
                     <div className="flex flex-row items-center">
                       <img
-                        src={post.image} // Use post image or a default image
+                        src={post.image}
                         alt={post.title}
                         className="w-14 h-14 object-cover rounded"
                       />
@@ -230,19 +241,95 @@ const page = () => {
           </div>
           <div className="mb-4">
             <h4 className="font-bold">Categories</h4>
-            <ul>
-              {[...new Set(blogsData.map((post) => post.category))].map((category, index) => (
+            {categories && (
+              <ul>
+                <li className="border-b-[1px]">
+                  <button
+                    onClick={() => setSelectedCategory('')}
+                    className="text-start w-full px-1 py-2 rounded"
+                  >
+                    ALL
+                    <span className="float-right">{blogsData.length}</span>
+                  </button>
+                </li>
+                {categories.map((category, index) => (
+                  <li
+                    key={index}
+                    className="border-b-[1px]"
+                  >
+                    <button
+                      onClick={() => setSelectedCategory(category)}
+                      className="text-start w-full px-1 py-2 rounded"
+                    >
+                      {category}
+                      <span className="float-right">{categoryCounts[category]}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div className="flex flex-col gap-3 rounded-3xl p-4 bg-slate-200 shadow-md">
+            <h4 className="font-bold">Stay Ahead with Techspance Insights</h4>
+            <p className="text-sm">
+              Get the Latest Tech Trends, Industry Insights, and Exclusive Updates - Delivered
+              Straight to Your Inbox
+            </p>
+            <form
+              method="post"
+              action="/#" // needs to be updated
+            >
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="border rounded p-2 w-full"
+              />
+              <button className="bg-primary text-white w-full py-2 mt-2 rounded">Subscribe</button>
+            </form>
+          </div>
+          <div className="font-bold">
+            SOCIAL
+            <ul className="flex flex-row gap-2 items-center self-center">
+              <li className="bg-white rounded-full p-2">
+                <a
+                  href="https://www.facebook.com/techspance/"
+                  target="_blank"
+                >
+                  <FaFacebookF className="text-2xl" />
+                </a>
+              </li>
+              <li className="bg-white rounded-full p-2">
+                <a
+                  href="https://www.linkedin.com/company/techspance-ltd/"
+                  target="_blank"
+                >
+                  <FaLinkedinIn className="text-2xl" />
+                </a>
+              </li>
+              <li className="bg-white rounded-full p-2">
+                <a
+                  href="https://github.com/Techspance"
+                  target="_blank"
+                >
+                  <TbBrandGithubFilled className="text-2xl" />
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="flex flex-col gap-4">
+            <h3 className="font-bold">
+              Popular<span className="text-primary"> Tags</span>
+            </h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((tag, index) => (
                 <li
                   key={index}
-                  className="py-2"
+                  className="bg-white py-1 px-2 rounded text-center"
                 >
-                  {category}
+                  Tag {tag}
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="mb-4">
-            <h4 className="font-bold">Newsletter</h4>
           </div>
         </aside>
       </section>
