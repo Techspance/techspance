@@ -119,9 +119,10 @@ const Header = () => {
         <section className="hidden md:flex justify-center items-center w-[500px] h-[333px] relative    ">
           <Image
             src={herocontainer}
+            alt="hero image"
             className="md:min-w-[500px] md:min-h-[333px] md:max-w-[500px] md:max-h-[333px]"
           />
-          <Image
+          <Image alt="hero image 2"
             className=" md:min-size-[223.33px] md:max-size-[223.33px] absolute top-[46.87px] left-[149.82px] animate-spin-slow"
             src={heromiddle}
           />

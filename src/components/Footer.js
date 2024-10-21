@@ -92,7 +92,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="hidden md:flex">
-            <Image src={hline} />
+            <Image src={hline} alt="horizontal line" />
           </div>
           <div className="flex flex-col space-y-4 mt-4  sm:space-x-4 md:flex-row md:items-center  md:space-x-20  ">
             <Image src={f_logo} alt="Techspance logo" />
