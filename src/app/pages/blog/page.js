@@ -1,5 +1,11 @@
-import React from 'react';
-import { blogData } from '../../../Databases/LocalDB';
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
+
 import { IoIosArrowBack, IoIosArrowForward, IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import {
   FaRegClock,
@@ -10,6 +16,8 @@ import {
   FaLinkedinIn,
 } from 'react-icons/fa';
 import { FaRegEye } from 'react-icons/fa6';
+
+import BlogPaginate from './blogPaginate';
 
 //icons
 {
@@ -33,6 +41,49 @@ import { FaRegEye } from 'react-icons/fa6';
 const url = './api/blogs';
 
 const page = () => {
+  const [blogsData, setBlogsData] = useState([]);
+  const [error, setError] = useState(null);
+
+  const url = 'http://localhost:3000/api/blogs'; // Ensure this URL is correct
+
+  const fetchBlogs = async () => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+      const data = await response.json();
+      if (data.success) {
+        setBlogsData(data.data); // Set the blogs data
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      setError(error.message); // Set error message
+    }
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  const popularPosts = [...blogsData]
+    .sort((a, b) => b.number_of_view - a.number_of_view)
+    .slice(0, 3);
+
+  const DaysPassed = (pastDateString) => {
+    const pastDate = new Date(pastDateString);
+
+    const currentDate = new Date();
+
+    const timeDifference = currentDate - pastDate;
+
+    const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+    return daysPassed;
+  };
+
   return (
     <div className="blog-page p-5 md:px-[140px] md:py-10 text-[#0e2f56] bg-background">
       <section className="header-section text-center mt-24 mx-auto w-[650px]">
@@ -49,85 +100,86 @@ const page = () => {
         <p>Stay informed, stay inspired.</p>
       </section>
 
-      <section className="recent-posts-slide mt-8">
-        <div className="swiper-container">
-          <div className="swiper-wrapper">
-            {blogData?.map((blog) => (
-              <div
-                key={blog.id}
-                className="swiper-slide"
-              >
+      <section className="recent-posts-slide w-11/12 mx-auto mt-8">
+        <Swiper
+          navigation={true}
+          modules={[Navigation]}
+          className="mySwiper"
+        >
+          {blogsData.map((blog) => (
+            <SwiperSlide
+              key={blog._id}
+              scrollbar={{ draggable: true }}
+              style={{ height: '550px' }}
+            >
+              <div className="relative h-full">
                 <img
                   src={blog.image}
                   alt={blog.title}
-                  className="w-full rounded-lg"
+                  className="w-full h-full object-cover rounded-3xl"
                 />
-                <div className="p-4">
-                  <h3 className="font-bold text-lg">{blog.title}</h3>
-                  <p className="text-sm">{blog.category}</p>
+                <div className="absolute bottom-20 left-10 right-10 p-4 bg-[#0000003c] text-white rounded-md">
+                  <div className="flex flex-row gap-2 mb-2 text-sm">
+                    <h6>{blog.category}</h6>
+                    <div className="flex flex-row gap-1">
+                      <FaRegClock className="my-auto" /> Posted {DaysPassed(blog.time)} days ago
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-xl">{blog.title}</h3>
+                  <p className="text-lg">{blog.description}</p>
                 </div>
               </div>
-            ))}
-          </div>
-          <div className="swiper-pagination"></div>
-          <div className="swiper-button-next"></div>
-          <div className="swiper-button-prev"></div>
-        </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </section>
 
       <section className="popular-posts mt-8">
         <h3 className="text-xl font-bold mb-4">Popular Posts</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <img
-              src="popular1.jpg"
-              alt="Popular Post"
-              className="w-full h-48 object-cover rounded"
-            />
-            <h4 className="font-bold mt-2">Popular Post Title</h4>
-            <p className="text-sm">Category: Design</p>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <img
-              src="popular1.jpg"
-              alt="Popular Post"
-              className="w-full h-48 object-cover rounded"
-            />
-            <h4 className="font-bold mt-2">Popular Post Title</h4>
-            <p className="text-sm">Category: Design</p>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <img
-              src="popular1.jpg"
-              alt="Popular Post"
-              className="w-full h-48 object-cover rounded"
-            />
-            <h4 className="font-bold mt-2">Popular Post Title</h4>
-            <p className="text-sm">Category: Design</p>
-          </div>
+          {popularPosts.map((post) => (
+            <div
+              key={post._id}
+              className="bg-white pb-4 rounded-lg shadow-md"
+            >
+              <img
+                src={post.image}
+                alt={post.title}
+                className="w-full h-48 object-cover rounded"
+              />
+              <div className="flex flex-col justify-between p-3 text-sm min-h-[120px]">
+                <div className="flex flex-col justify-between gap-2">
+                  <div className="flex flex-row justify-between">
+                    <div>{post.category}</div>
+                    <div className="flex flex-row gap-1">
+                      <FaRegClock className="my-auto" />
+                      {DaysPassed(post.time)} days ago
+                    </div>
+                  </div>
+                  <h4 className="font-bold">{post.title}</h4>
+                </div>
+                <div className="flex flex-row justify-between items-center mt-2">
+                  <div className="flex flex-row gap-1 my-auto">
+                    <FaRegUser /> By {post.author}
+                  </div>
+                  <div className="flex flex-row gap-2">
+                    <span className="flex flex-row gap-1 my-auto">
+                      <FaRegCommentAlt /> {post.comments.length}
+                    </span>
+                    <span className="flex flex-row gap-1 my-auto">
+                      <FaRegEye /> {post.number_of_view}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
       <section className="main-page flex flex-col md:flex-row mt-8">
         <main className="main-posts flex-1 md:mr-4">
-          <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-            <img
-              src="main1.jpg"
-              alt="Main Post"
-              className="w-full h-48 object-cover rounded"
-            />
-            <h4 className="font-bold mt-2">Main Post Title</h4>
-            <p className="text-sm">Category: Technology</p>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-            <img
-              src="main1.jpg"
-              alt="Main Post"
-              className="w-full h-48 object-cover rounded"
-            />
-            <h4 className="font-bold mt-2">Main Post Title</h4>
-            <p className="text-sm">Category: Technology</p>
-          </div>
+          <BlogPaginate blogPosts={blogsData} />
         </main>
 
         <aside className="right-side-panel w-full md:w-1/3 bg-white p-4 rounded-lg shadow-md">
