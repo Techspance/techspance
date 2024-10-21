@@ -10,6 +10,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
+        "gradient-linear": "linear-gradient(to bottom, #E7F1FF 0%, #EAEEF2 50%, #E7F1FF 100%)",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
@@ -21,6 +22,7 @@ module.exports = {
         silver: "#c0c0c0",
         "darker-blue": "#0E2F56",
         "dark-blue": "#0E2F56",
+        "lighter-blue": "#154782",
         white: "#FDFDFC",
         gray: "#FDFDFC",
       },
