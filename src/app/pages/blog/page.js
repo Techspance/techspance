@@ -42,6 +42,7 @@ const url = './api/blogs';
 
 const page = () => {
   const [blogsData, setBlogsData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [error, setError] = useState(null);
 
   const url = 'http://localhost:3000/api/blogs'; // Ensure this URL is correct
@@ -83,6 +84,10 @@ const page = () => {
 
     return daysPassed;
   };
+
+  const filteredPosts = blogsData.filter((post) =>
+    post.title.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   return (
     <div className="blog-page p-5 md:px-[140px] md:py-10 text-[#0e2f56] bg-background">
@@ -179,74 +184,61 @@ const page = () => {
 
       <section className="main-page flex flex-col md:flex-row mt-8">
         <main className="main-posts flex-1 md:mr-4">
-          <BlogPaginate blogPosts={blogsData} />
+          <BlogPaginate blogPosts={filteredPosts} />
         </main>
 
         <aside className="right-side-panel w-full md:w-1/3 bg-white p-4 rounded-lg shadow-md">
           <div className="mb-4">
-            <h4 className="font-bold">Recent Posts</h4>
+            <h4 className="font-bold">SEARCH</h4>
+            <input
+              type="text"
+              placeholder="Search posts..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="border rounded p-2 w-full"
+            />
+          </div>
+          <div className="mb-4">
+            <h2 class="font-bold text-xl my-1">
+              RECENT
+              <span className="text-primary"> POSTS</span>
+            </h2>
             <ul>
-              <li className="flex items-center justify-between py-2">
-                <div className="flex items">
-                  <img
-                    src="recent1.jpg"
-                    alt="Recent Post"
-                    className="w-12 h-12 object-cover rounded"
-                  />
-                  <div className="ml-2">
-                    <h4 className="font-bold">How to become a Python developer expert</h4>
-                    <p className="text-sm">Category: Development</p>
-                  </div>
-                </div>
-              </li>
-              <li className="flex items-center justify-between py-2">
-                <div className="flex items">
-                  <img
-                    src="recent1.jpg"
-                    alt="Recent Post"
-                    className="w-12 h-12 object-cover rounded"
-                  />
-                  <div className="ml-2">
-                    <h4 className="font-bold">How to become a Python developer expert</h4>
-                    <p className="text-sm">Category: Development</p>
-                  </div>
-                </div>
-              </li>
-              <li className="flex items-center justify-between py-2">
-                <div className="flex items">
-                  <img
-                    src="recent1.jpg"
-                    alt="Recent Post"
-                    className="w-12 h-12 object-cover rounded"
-                  />
-                  <div className="ml-2">
-                    <h4 className="font-bold">How to become a Python developer expert</h4>
-                    <p className="text-sm">Category: Development</p>
-                  </div>
-                </div>
-              </li>
-              <li className="flex items-center justify-between py-2">
-                <div className="flex items">
-                  <img
-                    src="recent1.jpg"
-                    alt="Recent Post"
-                    className="w-12 h-12 object-cover rounded"
-                  />
-                  <div className="ml-2">
-                    <h4 className="font-bold">How to become a Python developer expert</h4>
-                    <p className="text-sm">Category: Development</p>
-                  </div>
-                </div>
-              </li>
+              {blogsData
+                .slice()
+                .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date in descending order
+                .slice(0, 4) // Get the first 4 recent posts
+                .map((post, index) => (
+                  <li
+                    key={index}
+                    className="flex items-center justify-between py-2"
+                  >
+                    <div className="flex flex-row items-center">
+                      <img
+                        src={post.image} // Use post image or a default image
+                        alt={post.title}
+                        className="w-14 h-14 object-cover rounded"
+                      />
+                      <div className="ml-2">
+                        <h4 className="text-sm font-bold">{post.title}</h4>
+                        <p className="text-xs">{post.category}</p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
             </ul>
           </div>
           <div className="mb-4">
             <h4 className="font-bold">Categories</h4>
             <ul>
-              <li className="py-2">Design</li>
-              <li className="py-2">Development</li>
-              <li className="py-2">Technology</li>
-              <li className="py-2">Marketing</li>
+              {[...new Set(blogsData.map((post) => post.category))].map((category, index) => (
+                <li
+                  key={index}
+                  className="py-2"
+                >
+                  {category}
+                </li>
+              ))}
             </ul>
           </div>
           <div className="mb-4">
