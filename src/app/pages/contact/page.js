@@ -24,7 +24,7 @@ const helpDropdown = [
 
 
 
-const page = () => {
+const Page = () => {
   //formData state
   const [formData, setFormData] = useState({
     name: '',
@@ -159,4 +159,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
