@@ -41,7 +41,7 @@ import BlogPaginate from './blogPaginate';
 //blogs api endpoint
 const url = './api/blogs';
 
-const page = () => {
+const Page = () => {
   const [blogsData, setBlogsData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -469,4 +469,4 @@ export const sideBar = () =>{
   );
 }
 
-export default page;
+export default Page;
