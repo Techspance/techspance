@@ -40,7 +40,7 @@ const Page = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/projects`); // Ensure the URL is correct
+        const response = await fetch(`https://www.techspance.com/api/projects`); // Ensure the URL is correct
         if (!response.ok) {
           throw new Error(`Failed to fetch projects: ${response.status}`);
         }
