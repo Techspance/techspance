@@ -18,7 +18,7 @@ const categories = [
 
 const Page = () => {
   const [openIndex, setOpenIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1090);
+  const [isMobile, setIsMobile] = useState("");
   const [limit, setLimit] = useState(9);
   const [projects, setProjects] = useState([]);
   const selectedCategory = categories[openIndex];
