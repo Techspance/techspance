@@ -69,18 +69,18 @@ const Header = () => {
               <span className="font-bold">free consultation.</span>
             </p>
           </div>
-          <form onSubmit={handleSubmit}
-            
-            className="flex flex-col space-y-3"
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col space-y-3 "
           >
-            <div className="flex   flex-wrap items-center justify-between  ">
-              <div className="relative text-silver hover:text-dark-blue focus:text-dark-blue ">
+            <div className="flex   flex-wrap items-center justify-center  ">
+              <div className="relative text-darker-blue hover:text-dark-blue focus:text-dark-blue ">
                 <MdOutlineEmail
                   size={24}
                   className=" absolute top-2 left-2  "
                 />
                 <input
-                  className=" w-[320px] md:w-[200px] mb-2   h-[40px] pl-10   hover:border-3 hover:border-darker-blue rounded-sm pr-2"
+                  className=" w-[320px] md:w-[200px] mb-2   h-[40px] pl-10 outline-none  border-2 border-primary hover:border-background focus-border-darker-blue rounded-xl  pr-2  "
                   type="email"
                   name="email"
                   value={consultationForm.email}
@@ -92,14 +92,18 @@ const Header = () => {
               </div>
               <div className="">
                 <select
-                  className=" w-[320px] md:w-[200px] mb-2  h-[40px] pl-10 text-silver hover:text-dark-blue focus:text-dark-blue   hover:border-3 border-darker-blue rounded-sm pr-2"
+                  className=" w-[320px] md:w-[200px] mb-2  h-[40px] pl-10 text-darker-blue hover:text-dark-blue focus:text-dark-blue  outline-none  border-2 border-primary hover:border-background focus-border-darker-blue rounded-xl pr-2"
                   name="category"
                   id="category"
                   required
                   value={consultationForm.category}
+                  
                   onChange={handleChange}
+                  
                 >
-                  <option selected value="General">General</option>
+                  <option  value="General">
+                    General
+                  </option>
                   <option value="IT">IT</option>
                   <option value="Product Design">Product Design</option>
                   <option value="Product Development">
@@ -110,7 +114,7 @@ const Header = () => {
             </div>
             <button
               type="submit"
-              className="w-[320px] md:w-full bg-dark-blue hover:bg-darker-blue text-secondary hover:text-white h-[48px] rounded-full text-md"
+              className="w-[320px] md:w-full border-2 border-darker-blue hover:bg-darker-blue text-secondary hover:text-white py-2 mx-auto rounded-full "
             >
               Request a consultation
             </button>
@@ -122,7 +126,8 @@ const Header = () => {
             alt="hero image"
             className="md:min-w-[500px] md:min-h-[333px] md:max-w-[500px] md:max-h-[333px]"
           />
-          <Image alt="hero image 2"
+          <Image
+            alt="hero image 2"
             className=" md:min-size-[223.33px] md:max-size-[223.33px] absolute top-[46.87px] left-[149.82px] animate-spin-slow"
             src={heromiddle}
           />

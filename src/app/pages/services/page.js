@@ -29,35 +29,35 @@ const services = [
     description:
       "Our expert designers create innovative and user-friendly product interfaces that drive engagement and customer satisfaction.",
     image: design,
-    link: "./portfolio",
+    link: "./pages/portfolio",
   },
   {
     name: "Website Development",
     description:
       "We design and develop responsive, visually appealing websites that showcase your brand and engage your audience.",
     image: web,
-    link: "./portfolio",
+    link: "./pages/portfolio",
   },
   {
     name: "Mobile App Development",
     description:
       "Build native mobile apps for iOS and Android that offer a seamless user experience and drive business growth.",
     image: mobile,
-    link: "./portfolio",
+    link: "./pages/portfolio",
   },
   {
     name: "Custom Software Development",
     description:
       "Tailor-made software solutions that address your specific business needs and streamline your operations.",
     image: software,
-    link: "./portfolio",
+    link: "./pages/portfolio",
   },
   {
     name: "IT Consultation",
     description:
       "Our experienced consultants provide expert advice on technology strategy, implementation, and ongoing support.",
     image: IT,
-    link: "./portfolio",
+    link: "./pages/portfolio",
   },
 ];
 
@@ -637,7 +637,7 @@ const Page = () => {
           </ul>
         </div>
       </section>
-      <section className="processes mt-10">
+      <section id="process" className="processes mt-10">
         <div className="header">
           <h3 className="font-bold font-roboto text-2xl text-primary mb-5">
             Our Process

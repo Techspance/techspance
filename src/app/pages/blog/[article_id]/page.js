@@ -94,7 +94,13 @@ const Page = ({ params }) => {
   }, [article_id, blogs]);
 
   if (isLoading) {
-    return <div className="pt-32">Loading...</div>;
+    return (
+      <div className="pt-32 flex justify-center items-center ">
+        <p className=" h-10 text-2xl text-darker-blue  animate-pulse ">
+          Loading...
+        </p>
+      </div>
+    );
   }
 
   if (!article || !article._id) {
@@ -198,7 +204,7 @@ const Page = ({ params }) => {
             </div>
           </div></div>
           
-          {article.comments && (
+          {article.comments.length >=1 ? (
             <section className=" comments mt-5 ">
               <h2 className=" font-roboto font-bold text-2xl mt-3 mb-2 text-darker-blue ">
                 Comments
@@ -227,7 +233,7 @@ const Page = ({ params }) => {
                 })}
               </div>
             </section>
-          )}
+          ):null}
           <section className="leave a comment max-w-[600px] ">
             <h2 className=" font-bold font-roboto text-2xl text-darker-blue pt-5 my-2  ">
               Leave A Comment
@@ -272,7 +278,7 @@ const Page = ({ params }) => {
         {/* <sideBar /> */}
         {/* <aside className=" side-bar w-[320px] self-center   bg-primary h-[600px] "></aside> */}
       </div>
-      {relatedArticles && (
+      {relatedArticles.length >=1 ? (
         <div className=" related-articles bg-background -mx-5 md:-mx-[100px]  p-5 md:px-[100px]  flex-1  justify-center -mb-5 md:-mb-10 ">
           <div className="  flex justify-center items-center w-full mx-auto space-x-10 my-5   ">
             <button
@@ -308,7 +314,7 @@ const Page = ({ params }) => {
               ))}
           </section>
         </div>
-      )}
+      ):null}
     </section>
   );
 };

@@ -14,36 +14,36 @@ const services = [
     description:
       "Our expert designers create innovative and user-friendly product interfaces that drive engagement and customer satisfaction.",
     image: design,
-    link: "./projects/designs",
+    link: "./pages/portfolio",
   },
   {
     name: "Website Development",
     description:
       "We design and develop responsive, visually appealing websites that showcase your brand and engage your audience.",
     image: web,
-    link: "./projects/websites",
+    link: "./pages/portfolio",
   },
   {
     name: "Mobile App Development",
     description:
       "Build native mobile apps for iOS and Android that offer a seamless user experience and drive business growth.",
     image: mobile,
-    link: "./projects/mobileapps",
+    link: "./pages/portfolio",
   },
-//   {
-//     name: "Custom Software Development",
-//     description:
-//       "Tailor-made software solutions that address your specific business needs and streamline your operations.",
-//     image: software,
-//     link: "./projects/softwares",
-//   },
-//   {
-//     name: "IT Consultation",
-//     description:
-//       "Our experienced consultants provide expert advice on technology strategy, implementation, and ongoing support.",
-//     image: IT,
-//     link: "./projects/IT",
-//   },
+  //   {
+  //     name: "Custom Software Development",
+  //     description:
+  //       "Tailor-made software solutions that address your specific business needs and streamline your operations.",
+  //     image: software,
+  //     link: "./pages/portfolio",
+  //   },
+  //   {
+  //     name: "IT Consultation",
+  //     description:
+  //       "Our experienced consultants provide expert advice on technology strategy, implementation, and ongoing support.",
+  //     image: IT,
+  //     link: "./pages/portfolio",
+  //   },
 ];
 
 const ServiceSection = () => {
@@ -54,7 +54,7 @@ const ServiceSection = () => {
           Our Main <span className="text-primary italic">Services</span>
         </h2>
         <div className="flex items-center md:pt-2 text-dark-blue hover:text-primary text-xl">
-          <Link href="./Services" className="pl-32 md:pl-5 ">
+          <Link href="./pages/services" className="pl-32 md:pl-5 ">
             See All Services
           </Link>
           <IoIosArrowForward className="ml-2 mt-1.5 " />
