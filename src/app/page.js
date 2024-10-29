@@ -3,7 +3,7 @@
 import Header from "@/components/Header";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ServiceSection from "@/components/ServiceSection";
 import FeaturedProjects from "@/components/FeaturedProjects";
 
@@ -17,118 +17,18 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 
-const team = [
-  {
-    name: "Alice Johnson",
-    title: "Project Manager",
-    image: "https://example.com/images/alice.jpg",
-    bio: "Alice is an experienced project manager with a knack for delivering results on time and within budget. She loves organizing teams and ensuring smooth workflows.",
-    social_link: {
-      facebook: "https://facebook.com/alicejohnson",
-      linkedin: "https://linkedin.com/in/alicejohnson",
-      github: "https://github.com/alicejohnson",
-    },
-  },
-  {
-    name: "Bob Smith",
-    title: "Frontend Developer",
-    image: "https://example.com/images/bob.jpg",
-    bio: "Bob is a creative frontend developer who specializes in building responsive and engaging user interfaces. He enjoys coding and exploring new technologies.",
-    social_link: {
-      facebook: "https://facebook.com/bobsmith",
-      linkedin: "https://linkedin.com/in/bobsmith",
-      github: "https://github.com/bobsmith",
-    },
-  },
-  {
-    name: "Catherine Lee",
-    title: "Backend Developer",
-    image: "https://example.com/images/catherine.jpg",
-    bio: "Catherine is a backend developer with a passion for databases and server-side logic. She ensures that applications run smoothly behind the scenes.",
-    social_link: {
-      facebook: "https://facebook.com/catherinelee",
-      linkedin: "https://linkedin.com/in/catherinelee",
-      github: "https://github.com/catherinelee",
-    },
-  },
-  {
-    name: "David Kim",
-    title: "UX/UI Designer",
-    image: "https://example.com/images/david.jpg",
-    bio: "David is a talented UX/UI designer who focuses on creating user-friendly and visually appealing interfaces. He loves to enhance user experiences through design.",
-    social_link: {
-      facebook: "https://facebook.com/davidkim",
-      linkedin: "https://linkedin.com/in/davidkim",
-      github: "https://github.com/davidkim",
-    },
-  },
-  {
-    name: "Eva Patel",
-    title: "DevOps Engineer",
-    image: "https://example.com/images/eva.jpg",
-    bio: "Eva is a skilled DevOps engineer who bridges the gap between development and operations, ensuring efficient deployment and system performance.",
-    social_link: {
-      facebook: "https://facebook.com/evapatel",
-      linkedin: "https://linkedin.com/in/evapatel",
-      github: "https://github.com/evapatel",
-    },
-  },
-  {
-    name: "Frank White",
-    title: "Data Scientist",
-    image: "https://example.com/images/frank.jpg",
-    bio: "Frank is a data scientist with a strong analytical background. He loves extracting insights from data to drive business decisions.",
-    social_link: {
-      facebook: "https://facebook.com/frankwhite",
-      linkedin: "https://linkedin.com/in/frankwhite",
-      github: "https://github.com/frankwhite",
-    },
-  },
-  {
-    name: "Grace O'Connor",
-    title: "Marketing Specialist",
-    image: "https://example.com/images/grace.jpg",
-    bio: "Grace is a marketing specialist with expertise in digital marketing strategies. She enjoys creating campaigns that resonate with target audiences.",
-    social_link: {
-      facebook: "https://facebook.com/graceoconnor",
-      linkedin: "https://linkedin.com/in/graceoconnor",
-      github: "https://github.com/graceoconnor",
-    },
-  },
-  {
-    name: "Henry Garcia",
-    title: "Content Writer",
-    image: "https://example.com/images/henry.jpg",
-    bio: "Henry is a content writer who crafts compelling narratives and informative articles. He enjoys writing about technology and innovation.",
-    social_link: {
-      facebook: "https://facebook.com/henrygarcia",
-      linkedin: "https://linkedin.com/in/henrygarcia",
-      github: "https://github.com/henrygarcia",
-    },
-  },
-  {
-    name: "Isabella Martinez",
-    title: "Quality Assurance Engineer",
-    image: "https://example.com/images/isabella.jpg",
-    bio: "Isabella is a quality assurance engineer dedicated to maintaining high standards in software development through rigorous testing.",
-    social_link: {
-      facebook: "https://facebook.com/isabellamartinez",
-      linkedin: "https://linkedin.com/in/isabellamartinez",
-      github: "https://github.com/isabellamartinez",
-    },
-  },
-  {
-    name: "Jack Thompson",
-    title: "Business Analyst",
-    image: "https://example.com/images/jack.jpg",
-    bio: "Jack is a business analyst who helps organizations understand their needs and develop solutions that align with their goals.",
-    social_link: {
-      facebook: "https://facebook.com/jackthompson",
-      linkedin: "https://linkedin.com/in/jackthompson",
-      github: "https://github.com/jackthompson",
-    },
-  },
-];
+import { data } from "../Databases/teams";
+
+const team = data.data
+
+const getRandomData = (data, number) => {
+  const shuffled = data.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, number);
+};
+
+const localTeam = getRandomData(data.data, 3);
+
+
 
 export default function Home() {
   return (
@@ -169,25 +69,64 @@ const CTA = () => {
 };
 
 const TeamSection = () => {
+  const [featuredTeam, setFeaturedTeam] = useState([]);
+  const [loading, setLoading] = useState(false); // Add loading state
+
+  const fetchTeam = async () => {
+    try {
+      setLoading(true); // Start loading
+      const response = await fetch("https://www.techspance.com/api/teams");
+      const data = await response.json();
+
+      if (data.success) {
+        const team = data.data;
+        setFeaturedTeam(getRandomData(team, 3));
+      } else {
+        console.error("Failed to fetch projects:", data.message);
+        setFeaturedTeam(localTeam); // Fallback to local data
+      }
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+      setFeaturedTeam(localTeam); // Fallback to local data on error
+    } finally {
+      setLoading(false); // Loading finished
+    }
+  };
+
+  // Fetch featuredProjects on component mount
+  useEffect(() => {
+    fetchTeam();
+  }, []);
+
   return (
     <section className=" bg-white p-5 md:px-[140px] md:py-10  ">
       <h1 className=" font-bold text-2xl md:text-3xl text-darker-blue  my-5">
         Meet Our <span className=" italic text-primary ">Amazing Team</span>
       </h1>
-      <div className=" flex flex-wrap justify-center md:justify-between  ">
-        {team.map((member,index)=>(<TeamCard key={index} team={member} />))}
-        
-      </div>
-      <div className=" my-5 ">
+      {loading ? (
+        <div className=" flex flex-wrap justify-center md:justify-between  ">
+          <div className="size-[320px] bg-silver rounded-2xl shadow-2xl animate-pulse m-4 "></div>
+          <div className="size-[320px] bg-silver rounded-2xl shadow-2xl animate-pulse  m-4 "></div>
+          <div className="size-[320px] bg-silver rounded-2xl shadow-2xl animate-pulse  m-4 "></div>
+        </div>
+      ) : (
+        <div className=" flex flex-wrap justify-center md:justify-between  ">
+          {featuredTeam.map((member, index) => (
+            <TeamCard key={index} team={member} />
+          ))}
+        </div>
+      )}
+
+      <div className=" my-5 flex justify-center space-x-5 ">
         <Link
-          href="./pages/company/#teams"
-          className=" px-5 py-1 rounded-full bg-primary hover:bg-darker-blue border-primary border-2 text-secondary hover:text-white w-[140px] "
+          href="./pages/company/ourTeam"
+          className=" px-5 py-1 rounded-full bg-primary hover:bg-darker-blue border-primary  hover:border-darker-blue border-2 text-secondary hover:text-white  transition-all duration-300 "
         >
           See All Team
         </Link>
         <Link
-          href="./pages/company/#careers"
-          className=" px-5 py-1 rounded-full hover:bg-primary  border-primary border-2 text-darker-blue hover:text-white w-[140px] "
+          href="./pages/company/careers"
+          className=" px-5 py-1 rounded-full hover:bg-primary  border-primary border-2 text-darker-blue hover:text-white  transition-all duration-300 "
         >
           Join Our Team
         </Link>

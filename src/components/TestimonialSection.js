@@ -89,7 +89,7 @@ const TestimonialSection = () => {
         </div>
 
         {/* Testimonial cards */}
-        <div>
+        
           {loading ? (
             <div className="flex flex-wrap h-[330px] overflow-y-hidden overflow-x-auto scrollbar-hide justify-center sm:justify-between transition-all duration-500">
               <div className="size-[300px] bg-silver animate-pulse rounded-2xl shadow-2xl " > </div>
@@ -113,7 +113,7 @@ const TestimonialSection = () => {
                 })}
             </div>
           )}
-        </div>
+        
       </section>
     </div>
   );

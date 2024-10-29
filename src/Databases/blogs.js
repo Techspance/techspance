@@ -191,7 +191,7 @@ export const data = {
           comment: "Couldn't agree more! UX is a game-changer.",
         },
       ],
-      number_of_view: { $numberInt: "278" },
+      number_of_view: 278,
       time: "2024-09-18T10:45:00Z",
     },
     {
@@ -208,7 +208,7 @@ export const data = {
       comments: [
         { author: "Jane Smith", comment: "Great article! Very insightful." },
       ],
-      number_of_view: { $numberInt: "325" },
+      number_of_view: 325,
       time: "2024-09-20T14:30:00Z",
     },
     {
@@ -223,7 +223,7 @@ export const data = {
       content:
         "As mobile devices continue to dominate web traffic, having a responsive website is essential for businesses of all sizes. Responsive design ensures that your website looks and functions well on any device, whether it's a smartphone, tablet, or desktop. This article explores the key aspects of responsive design, how it benefits user experience, and why it's crucial for SEO... [rest of content would continue for 600 words]",
       comments: [],
-      number_of_view: { $numberInt: "318" },
+      number_of_view:318,
       time: "2024-09-01T07:25:00Z",
     },
     {
@@ -238,7 +238,7 @@ export const data = {
       content:
         "Blockchain is no longer just a technology for cryptocurrencies. Its use in web development is growing as businesses recognize the security, transparency, and decentralization benefits it offers. In this article, we'll explore how blockchain can be integrated into modern web applications... [rest of content would continue for 600 words]",
       comments: [],
-      number_of_view: { $numberInt: "487" },
+      number_of_view: 487,
       time: "2024-09-08T13:35:00Z",
     },
     {
@@ -253,7 +253,7 @@ export const data = {
       content:
         "Choosing the right CMS for your website can be a challenging task, with so many options available. From WordPress to Drupal to custom-built solutions, each CMS has its strengths and weaknesses. In this article, we break down the factors to consider when choosing a CMS, such as ease of use, scalability, and flexibility... [rest of content would continue for 600 words]",
       comments: [],
-      number_of_view: { $numberInt: "274" },
+      number_of_view: 274,
       time: "2024-09-03T08:50:00Z",
     },
     {
@@ -273,7 +273,7 @@ export const data = {
           comment: "Custom solutions have really helped our business grow.",
         },
       ],
-      number_of_view: { $numberInt: "392" },
+      number_of_view:392,
       time: "2024-09-12T16:20:00Z",
     },
     {
@@ -288,7 +288,7 @@ export const data = {
       content:
         "Artificial intelligence (AI) and machine learning are transforming mobile app development by enabling more personalized and predictive experiences for users. From chatbots to recommendation engines, the possibilities for AI in apps are endless. This blog post delves into the current and future applications of AI in mobile app development... [rest of content would continue for 600 words]",
       comments: [],
-      number_of_view: { $numberInt: "421" },
+      number_of_view: 421,
       time: "2024-08-28T12:00:00Z",
     },
   ],

@@ -86,9 +86,9 @@ const FeaturedProjects = () => {
       </h1>
       {loading ? (
         <div className=" flex flex-wrap justify-center md:justify-between     ">
-          <div className=" bg-silver size-[320px] rounded-2xl shadow-2xl animate-pulse "></div>
-          <div className=" bg-silver size-[320px] rounded-2xl shadow-2xl animate-pulse "></div>
-          <div className=" bg-silver size-[320px] rounded-2xl shadow-2xl animate-pulse "></div>
+          <div className=" bg-silver size-[320px] rounded-2xl shadow-2xl animate-pulse m-5 "></div>
+          <div className=" bg-silver size-[320px] rounded-2xl shadow-2xl animate-pulse m-5"></div>
+          <div className=" bg-silver size-[320px] rounded-2xl shadow-2xl animate-pulse m-5"></div>
         </div>
       ) : (
         <div className=" flex flex-wrap justify-center md:justify-between  ">
