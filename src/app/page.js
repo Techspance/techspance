@@ -17,72 +17,6 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 
-export default function Home() {
-  return (
-    <div>
-      <Header />
-      <TestimonialSection />
-      <ServiceSection />
-      <MissionVision />
-      <TechnologySection />
-      <FeaturedProjects />
-      <TeamSection />
-      <BlogFaqsSection />
-      <CTA />
-    </div>
-  );
-}
-
-const CTA = () => {
-  return (
-    <section className="bg-primary p-5 md:px-[140px] md:py-10 space-y-10 flex flex-col justify-center flex-wrap ">
-      <div className="max-w-[800px] self-center ">
-        <h2 className="text-white text-3xl md:text-center font-bold self-center  ">
-          Assess Your Business Potential Now & Find Opportunities For{" "}
-          <span className="font-normal italic">Bigger Success</span>
-        </h2>
-      </div>
-
-      <div className=" self-center ">
-        <Link
-          className="text-white text-md hover:bg-darker-blue border-2 hover:border-darker-blue rounded-full px-5 py-2 "
-          href="./pages/contact"
-        >
-          Get Information
-        </Link>
-      </div>
-    </section>
-  );
-};
-
-const TeamSection = () => {
-  return (
-    <section className=" bg-white p-5 md:px-[140px] md:py-10  ">
-      <h1 className=" font-bold text-2xl md:text-3xl text-darker-blue  my-5">
-        Meet Our <span className=" italic text-primary ">Amazing Team</span>
-      </h1>
-      <div className=" flex flex-wrap justify-center md:justify-between  ">
-        {team.map((member,index)=>(<TeamCard key={index} team={member} />))}
-        
-      </div>
-      <div className=" my-5 ">
-        <Link
-          href="./pages/company/#teams"
-          className=" px-5 py-1 rounded-full bg-primary hover:bg-darker-blue border-primary border-2 text-secondary hover:text-white w-[140px] "
-        >
-          See All Team
-        </Link>
-        <Link
-          href="./pages/company/#careers"
-          className=" px-5 py-1 rounded-full hover:bg-primary  border-primary border-2 text-darker-blue hover:text-white w-[140px] "
-        >
-          Join Our Team
-        </Link>
-      </div>
-    </section>
-  );
-};
-
 const team = [
   {
     name: "Alice Johnson",
@@ -196,6 +130,74 @@ const team = [
   },
 ];
 
+export default function Home() {
+  return (
+    <div>
+      <Header />
+      <TestimonialSection />
+      <ServiceSection />
+      <MissionVision />
+      <TechnologySection />
+      <FeaturedProjects />
+      <TeamSection />
+      <BlogFaqsSection />
+      <CTA />
+    </div>
+  );
+}
+
+const CTA = () => {
+  return (
+    <section className="bg-primary p-5 md:px-[140px] md:py-10 space-y-10 flex flex-col justify-center flex-wrap ">
+      <div className="max-w-[800px] self-center ">
+        <h2 className="text-white text-3xl md:text-center font-bold self-center  ">
+          Assess Your Business Potential Now & Find Opportunities For{" "}
+          <span className="font-normal italic">Bigger Success</span>
+        </h2>
+      </div>
+
+      <div className=" self-center ">
+        <Link
+          className="text-white text-md hover:bg-darker-blue border-2 hover:border-darker-blue rounded-full px-5 py-2 "
+          href="./pages/contact"
+        >
+          Get Information
+        </Link>
+      </div>
+    </section>
+  );
+};
+
+const TeamSection = () => {
+  return (
+    <section className=" bg-white p-5 md:px-[140px] md:py-10  ">
+      <h1 className=" font-bold text-2xl md:text-3xl text-darker-blue  my-5">
+        Meet Our <span className=" italic text-primary ">Amazing Team</span>
+      </h1>
+      <div className=" flex flex-wrap justify-center md:justify-between  ">
+        {team.map((member,index)=>(<TeamCard key={index} team={member} />))}
+        
+      </div>
+      <div className=" my-5 ">
+        <Link
+          href="./pages/company/#teams"
+          className=" px-5 py-1 rounded-full bg-primary hover:bg-darker-blue border-primary border-2 text-secondary hover:text-white w-[140px] "
+        >
+          See All Team
+        </Link>
+        <Link
+          href="./pages/company/#careers"
+          className=" px-5 py-1 rounded-full hover:bg-primary  border-primary border-2 text-darker-blue hover:text-white w-[140px] "
+        >
+          Join Our Team
+        </Link>
+      </div>
+    </section>
+  );
+};
+
+
+
 const TeamCard = ({ team }) => {
   const { name, title, image, bio, social_link } = team;
 
@@ -229,7 +231,7 @@ const TeamCard = ({ team }) => {
             <FaLinkedinIn />
           </Link>
           <Link
-            href={social_link.git}
+            href={social_link.github}
             className=" bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300  "
           >
             <FaGithub />
