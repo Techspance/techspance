@@ -113,7 +113,8 @@ const Page = ({ params }) => {
         <h1 className=" font-roboto font-bold text-3xl text-darker-blue text-center ">
           {article.title}
         </h1>
-        <p className=" flex items-center text-primary text-xl my-5 w-fit mx-auto  ">{article.category} <span className=" mx-3 text-silver ">|</span>
+        <p className=" flex items-center text-primary text-xl my-5 w-fit mx-auto  ">
+          {article.category} <span className=" mx-3 text-silver ">|</span>
           <span className=" flex items-center space-x-2 text-base text-dark-blue h-fit my-auto ">
             <FaRegClock className="mr-2" />
             Posted {DaysPassed(article.time)} days ago
@@ -157,54 +158,55 @@ const Page = ({ params }) => {
             }}
             className=" article-content flex flex-col space-y-2 -mb-0  "
           ></div>
-          <div className="" >
+          <div className="">
             <div className=" flex flex-wrap  justify-between items-center   ">
-            
               <ul className=" flex flex-wrap   ">
-                 {article.tags &&
-                article.tags.map((tag, index) => (
-                  <li
-                    key={index}
-                    className=" bg-background text-lighter-blue py-1 px-2 m-1 rounded-lg shadow-lg "
-                  >
-                    {tag}
-                  </li>
+                {article.tags &&
+                  article.tags.map((tag, index) => (
+                    <li
+                      key={index}
+                      className=" bg-background text-lighter-blue py-1 px-2 m-1 rounded-lg shadow-lg "
+                    >
+                      {tag}
+                    </li>
                   ))}
               </ul>
-            
 
-            <div className=" flex items-center text-dark-blue ml-3 ">
-              SHARE ON{" "}
-              <span className=" flex ">
-                <Link
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                    window.location.href
-                  )}`}
-                  className=" bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300 "
-                >
-                  <FaFacebookF />
-                </Link>
-                <Link
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                    window.location.href
-                  )}`}
-                  className=" bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300 "
-                >
-                  <FaLinkedinIn />
-                </Link>
-                <Link
-                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                    window.location.href
-                  )}`}
-                  className=" bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300 "
-                >
-                  <FaXTwitter />
-                </Link>
-              </span>{" "}
+              <div className=" flex items-center text-dark-blue ml-3 ">
+                SHARE ON{" "}
+                <span className=" flex ">
+                  <Link
+                    target="_blank"
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                      window.location.href
+                    )}`}
+                    className=" bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300 "
+                  >
+                    <FaFacebookF />
+                  </Link>
+                  <Link
+                    target="_blank" 
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                      window.location.href
+                    )}`}
+                    className=" bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300 "
+                  >
+                    <FaLinkedinIn />
+                  </Link>
+                  <Link target="_blank" 
+                    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                      window.location.href
+                    )}`}
+                    className=" bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300 "
+                  >
+                    <FaXTwitter />
+                  </Link>
+                </span>{" "}
+              </div>
             </div>
-          </div></div>
-          
-          {article.comments.length >=1 ? (
+          </div>
+
+          {article.comments.length >= 1 ? (
             <section className=" comments mt-5 ">
               <h2 className=" font-roboto font-bold text-2xl mt-3 mb-2 text-darker-blue ">
                 Comments
@@ -233,7 +235,7 @@ const Page = ({ params }) => {
                 })}
               </div>
             </section>
-          ):null}
+          ) : null}
           <section className="leave a comment max-w-[600px] ">
             <h2 className=" font-bold font-roboto text-2xl text-darker-blue pt-5 my-2  ">
               Leave A Comment
@@ -278,7 +280,7 @@ const Page = ({ params }) => {
         {/* <sideBar /> */}
         {/* <aside className=" side-bar w-[320px] self-center   bg-primary h-[600px] "></aside> */}
       </div>
-      {relatedArticles.length >=1 ? (
+      {relatedArticles.length >= 1 ? (
         <div className=" related-articles bg-background -mx-5 md:-mx-[100px]  p-5 md:px-[100px]  flex-1  justify-center -mb-5 md:-mb-10 ">
           <div className="  flex justify-center items-center w-full mx-auto space-x-10 my-5   ">
             <button
@@ -314,7 +316,7 @@ const Page = ({ params }) => {
               ))}
           </section>
         </div>
-      ):null}
+      ) : null}
     </section>
   );
 };

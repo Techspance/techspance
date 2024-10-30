@@ -12,7 +12,7 @@ import MissionVision from "@/components/MissionVision";
 import TechnologySection from "@/components/TechnologySection";
 import BlogFaqsSection from "@/components/BlogFaqsSection";
 
-import profile from "../assets/images/home/profile.png";
+import profile from "../assets/images/home/profile.webp";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
@@ -160,18 +160,21 @@ const TeamCard = ({ team }) => {
           <Link
             href={social_link.facebook}
             className=" bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300  "
+            target="_blank"
           >
             <FaFacebookF />
           </Link>
           <Link
             href={social_link.linkedin}
             className=" bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300   "
+            target="_blank"
           >
             <FaLinkedinIn />
           </Link>
           <Link
             href={social_link.github}
             className=" bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300  "
+            target="_blank"
           >
             <FaGithub />
           </Link>
