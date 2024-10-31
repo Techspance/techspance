@@ -47,7 +47,7 @@ const Page = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [error, setError] = useState(null);
 
-  const url = 'http://localhost:3000/api/blogs'; // Ensure this URL is correct
+  const url = 'http://www.techspance.com/api/blogs'; // Ensure this URL is correct
 
   const fetchBlogs = async () => {
     try {
