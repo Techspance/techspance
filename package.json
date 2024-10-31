@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "npm rebuild sharp"
+   
   },
   "dependencies": {
     "@vercel/speed-insights": "^1.0.12",
@@ -34,4 +34,4 @@
   }
 }
 
-  // "sharp": "^0.33.5",
+ 
