@@ -29,40 +29,46 @@ const services = [
     description:
       "Our expert designers create innovative and user-friendly product interfaces that drive engagement and customer satisfaction.",
     image: design,
-    link: "./pages/portfolio",
+    link: "/pages/portfolio",
+    id:"#productDesign"
   },
   {
     name: "Website Development",
     description:
       "We design and develop responsive, visually appealing websites that showcase your brand and engage your audience.",
     image: web,
-    link: "./pages/portfolio",
+    link: "/pages/portfolio",
+    id:"#website"
   },
   {
     name: "Mobile App Development",
     description:
       "Build native mobile apps for iOS and Android that offer a seamless user experience and drive business growth.",
     image: mobile,
-    link: "./pages/portfolio",
+    link: "/pages/portfolio",
+    id:"#mobile"
   },
   {
     name: "Custom Software Development",
     description:
       "Tailor-made software solutions that address your specific business needs and streamline your operations.",
     image: software,
-    link: "./pages/portfolio",
+    link: "/pages/portfolio",
+    id:"#software"
   },
   {
     name: "IT Consultation",
     description:
       "Our experienced consultants provide expert advice on technology strategy, implementation, and ongoing support.",
     image: IT,
-    link: "./pages/portfolio",
+    link: "/pages/portfolio",
+    id:"#it"
   },
 ];
 
 const serviceDetails = [
   {
+    id:"productDesign",
     name: "A. Product Design",
     image: designdetail,
     offerText:
@@ -129,7 +135,7 @@ const serviceDetails = [
       "to explore how our Product Design services can elevate your business.",
     ],
   },
-  {
+  {id:"website",
     name: "B. Website Design & Development",
     image: webdetail,
     offerText:
@@ -201,7 +207,7 @@ const serviceDetails = [
       "to start building a website that drives engagement and success.",
     ],
   },
-  {
+  {id:"mobile",
     name: "C. Mobile App Development",
     image: mobiledetail,
     offerText:
@@ -262,7 +268,7 @@ const serviceDetails = [
       "and start building your app today.",
     ],
   },
-  {
+  {id:"software",
     name: "D. Custom Software Solutions",
     image: softwaredetail,
     offerText:
@@ -328,7 +334,7 @@ const serviceDetails = [
       "to learn how our custom software can transform your operations.",
     ],
   },
-  {
+  {id:"it",
     name: "E. IT Support & Maintenance",
     image: ITdetail,
     offerText:
@@ -497,7 +503,7 @@ const processes = [
 ];
 const Page = () => {
   return (
-    <div className="p-5 md:px-[140px] md:py-10 bg-background">
+    <div className="p-5 md:px-[140px] md:py-10 bg-background scroll-smooth ">
       <section className="page-intro mt-24 mx-auto mb-5">
         <h1 className="font-roboto font-bold text-3xl text-center text-darker-blue mb-5">
           Our Core <span className="text-primary italic">Services</span>
@@ -516,11 +522,11 @@ const Page = () => {
       </section>
       <section className="service-details mt-10">
         {serviceDetails.map((service, index) => {
-          const { name, image, offerText, offer, helpText, help, CTA } =
+          const { name, image, offerText, offer, helpText, help, CTA, id } =
             service;
 
           return (
-            <article key={index}>
+            <article key={index} id={id}>
               {/* service-detail-header */}
               <div className="service-detail-header">
                 <h2 className="font-bold font-roboto text-2xl text-primary mb-5">
@@ -679,19 +685,19 @@ const Page = () => {
           </ul>
         </div>
       </section>
-      <section className=" bottom-section bg-primary -mx-5 md:-mx-[140px] text-white py-10 -mb-10 flex flex-col justify-center ">
+      <section className=" bottom-section bg-primary -mx-5 md:-mx-[140px] text-white p-5 py-10 -mb-10 flex flex-col justify-center ">
         <h2 className="  mx-auto text-center text-2xl mb-5 ">
           Ready to Elevate Your Business?
         </h2>
-        <p className=" max-w-[800px] mx-auto text-center text-lg mb-5 px-5 ">
+        <p className=" max-w-[600px] mx-auto text-center text-lg mb-5 px-5 ">
           At Techspance, we’re committed to delivering solutions that drive
           growth and innovation. Whether you need help with product design,
           website development, mobile apps, or custom software, our team is here
           to guide you every step of the way.
         </p>
         <Link
-          className="  mx-auto  text-center py-1 px-5 rounded-full hover:bg-dark-blue border-2 border-white hover:border-dark-blue "
-          href="./contact"
+          className="  mx-auto  text-center py-1 px-10 rounded-full hover:bg-dark-blue border-2 border-white hover:border-dark-blue "
+          href="pages/contact"
         >
           Get Started Today
         </Link>

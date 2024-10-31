@@ -12,7 +12,7 @@ import MissionVision from "@/components/MissionVision";
 import TechnologySection from "@/components/TechnologySection";
 import BlogFaqsSection from "@/components/BlogFaqsSection";
 
-import profile from "../assets/images/home/profile.webp";
+import profile from "../assets/images/home/profile.png";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
