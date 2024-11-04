@@ -7,6 +7,10 @@ import animateddownarrow from "../../../assets/images/portfolio/animateddownarro
 import hline from "../../../assets/images/portfolio/hline.svg";
 import design from "../../../assets/images/portfolio/design.svg";
 
+import {data} from "../../../Databases/projects";
+
+const localProjects = data.data;
+
 const categories = [
   "All",
   "Product Design",
@@ -18,43 +22,52 @@ const categories = [
 
 const Page = () => {
   const [openIndex, setOpenIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
   const [limit, setLimit] = useState(9);
   const [projects, setProjects] = useState([]);
+  const [loading,setLoading] = useState(true)
   const selectedCategory = categories[openIndex];
+
+    const fetchProjects = async () => {
+      try {
+        setLoading(true); // Start loading
+        const response = await fetch("https://www.techspance.com/api/projects");
+        const data = await response.json();
+
+        if (data.success) {
+          
+          setProjects(data.data);
+        } else {
+          console.error("Failed to fetch projects:", data.message);
+          setProjects(localProjects); // Fallback to local data
+        }
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+        setProjects(localProjects); // Fallback to local data on error
+      } finally {
+        setLoading(false); // Loading finished
+      }
+    };
 
   const handleToggle = (index) => {
     setOpenIndex(index);
   };
 
   useEffect(() => {
+
+    // Fetch projects data
+    fetchProjects();
+
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1090);
+      if (window.innerWidth <= 1090) setIsMobile(true);
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Fetch projects data
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch(`https://www.techspance.com/api/projects`); // Ensure the URL is correct
-        if (!response.ok) {
-          throw new Error(`Failed to fetch projects: ${response.status}`);
-        }
-        const data = await response.json(); // Store response in a variable
-        setProjects(data.data); // Assuming data is the array of projects
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-
-  console.log(projects);
+  
+ 
 
   // Filter projects based on the selected category
   const filteredProjects =
@@ -111,14 +124,14 @@ const Page = () => {
             <p>No project for the selected Category</p>
           )}
         </div>
-        {limitedProjects.length >= limit && (
+        {limitedProjects.length != filteredProjects.length? (
           <button
-            className="w-[200px] mx-auto bg-darker-blue text-secondary hover:bg-primary hover:text-white py-1 rounded-full self-center"
+            className=" mx-auto bg-darker-blue text-secondary hover:bg-primary hover:text-white py-1 px-10 rounded-full self-center transition-all duration-300"
             onClick={() => setLimit(filteredProjects.length)} // Show all projects
           >
             See More
           </button>
-        )}
+        ):null}
       </section>
 
       {/* Bottom section */}
@@ -130,8 +143,8 @@ const Page = () => {
         </p>
         <Image src={hline} alt="horizontal line" className="w-[50%] mx-auto" />
         <Link
-          href="./contact"
-          className="border-2 border-primary rounded-full px-5 py-1 text-darker-blue hover:bg-primary hover:text-white mx-auto"
+          href="pages/contact"
+          className="border-2 border-primary rounded-full px-10 py-1 text-darker-blue hover:bg-primary hover:text-white mx-auto transition-all duration-300 "
         >
           Get Started
         </Link>
