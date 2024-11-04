@@ -49,25 +49,25 @@ const page = () => {
 
   const url = 'http://localhost:3000/api/blogs'; // Ensure this URL is correct
 
-  const fetchBlogs = async () => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.statusText}`);
-      }
-      const data = await response.json();
-      if (data.success) {
-        setBlogsData(data.data); // Set the blogs data
-      } else {
-        throw new Error(data.message);
-      }
-    } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
-      setError(error.message); // Set error message
-    }
-  };
-
   useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        const data = await response.json();
+        if (data.success) {
+          setBlogsData(data.data); // Set the blogs data
+        } else {
+          throw new Error(data.message);
+        }
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+        setError(error.message); // Set error message
+      }
+    };
+
     fetchBlogs();
   }, []);
 
