@@ -4,7 +4,7 @@ import {data} from "../../../../Databases/careers"
 
 const localCareersData = data.data
 
-const page = () => {
+const Page = () => {
   const [careers, setCareers] = useState([]);
   const [loading, setLoading] = useState(false); // Add loading state
 
@@ -38,4 +38,4 @@ useEffect(() => {
   return <div>Careers</div>;
 }
 
-export default page
+export default Page
