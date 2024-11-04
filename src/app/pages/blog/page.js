@@ -102,8 +102,8 @@ const page = () => {
 
   return (
     <div className="blog-page p-5 md:px-[140px] md:py-10 text-[#0e2f56] bg-background">
-      <section className="header-section text-center mt-24 mx-auto w-[650px]">
-        <h2 class="font-bold text-2xl my-1">
+      <section className="header-section text-center mt-24 mx-auto max-w-[650px]">
+        <h2 className="font-bold text-2xl my-1">
           Our
           <span className="text-primary"> Blogs</span>
         </h2>
@@ -320,7 +320,7 @@ const page = () => {
             <h3 className="font-bold">
               Popular<span className="text-primary"> Tags</span>
             </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+            <ul className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((tag, index) => (
                 <li
                   key={index}
