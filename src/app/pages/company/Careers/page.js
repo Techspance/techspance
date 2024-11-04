@@ -11,7 +11,7 @@ const page = () => {
 const fetchCareers = async () => {
   try {
     setLoading(true); // Start loading
-    const response = await fetch("https://www.techspance.com/api/teams");
+    const response = await fetch("https://www.techspance.com/api/careers");
     const data = await response.json();
 
     if (data.success) {
