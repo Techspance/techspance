@@ -11,7 +11,7 @@ import worldmap from "@/assets/images/worldmap.svg";
 
 const Footer = () => {
   return (
-    <footer className="w-full p-5 md:pl-[140px]  md:py-10 bg-secondary relative ">
+    <footer className="w-full p-5 md:pl-[140px]  md:py-10 bg-slate-200 relative ">
       <div>
         <div>
           <div className="flex flex-col space-y-5 flex-wrap md:flex-row place-content-between sm:place-content-between items-start">
@@ -24,20 +24,23 @@ const Footer = () => {
                 businesses worldwide. Empowering your business with custom
                 software, web development, and mobile app development.
               </p>
-              <div className="sIcons flex space-x-5 mt-3 mb-3 ">
+              <div className="sIcons flex">
                 <Link
+                  target="_blank"
                   href={`https://www.facebook.com/profile.php?id=61565308981633`}
-                  className="size-[32px] md:size-[48px] bg-silver flex justify-center items-center rounded-full hover:bg-darker-blue text-dark-blue hover:text-white"
+                  className="bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
                 >
-                  <FaFacebookF className="size-[16px] md:size-[24px] " />
+                  <FaFacebookF />
                 </Link>
                 <Link
+                  target="_blank"
                   href={`https://www.linkedin.com/company/techspance-ltd`}
-                  className="size-[32px] md:size-[48px] bg-silver flex justify-center items-center rounded-full hover:bg-darker-blue text-dark-blue hover:text-white"
+                  className="bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
                 >
-                  <FaLinkedinIn className="size-[16px] md:size-[24px] " />
+                  <FaLinkedinIn />
                 </Link>
                 {/* <Link
+                target="_blank"
                   href={`#`}
                   className="size-[32px] md:size-[48px] bg-silver flex justify-center items-center rounded-full hover:bg-darker-blue text-dark-blue hover:text-white"
                 >

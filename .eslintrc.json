@@ -1,10 +1,11 @@
-// {
-//   "extends": "next/core-web-vitals"
-// }
 
 {
-  "extends": "next",
+  "extends": "next/core-web-vitals",
   "rules": {
+    "react/react-in-jsx-scope": "off",     // Disable rule for importing React in every file (Next.js handles this)
+    "no-console": "warn",                  // Change 'console.log' rule from 'error' to 'warn'
+    "react/prop-types": "off",             // Disable prop-types rule if using TypeScript or don't need PropTypes
+    "jsx-a11y/anchor-is-valid": "off",      // Disable anchor validity if customizing <a> tags in Next.js
     "react/no-unescaped-entities": "off",
     "@next/next/no-page-custom-font": "off"
   }

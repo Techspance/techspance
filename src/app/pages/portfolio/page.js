@@ -18,7 +18,7 @@ const categories = [
 
 const Page = () => {
   const [openIndex, setOpenIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1090);
+  const [isMobile, setIsMobile] = useState("");
   const [limit, setLimit] = useState(9);
   const [projects, setProjects] = useState([]);
   const selectedCategory = categories[openIndex];
@@ -40,7 +40,7 @@ const Page = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/projects`); // Ensure the URL is correct
+        const response = await fetch(`https://www.techspance.com/api/projects`); // Ensure the URL is correct
         if (!response.ok) {
           throw new Error(`Failed to fetch projects: ${response.status}`);
         }

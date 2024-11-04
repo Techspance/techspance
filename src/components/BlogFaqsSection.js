@@ -8,7 +8,7 @@ const JournalFaqsSection = () => {
   return (
     <section className=" p-5 md:py-5 md:px-[140px] flex flex-wrap md:justify-between bg-background">
       <ArticleSection />
-      <Image src={vline} alt="vline" className="hidden md:flex h-[550px] self-center " />
+      <Image width={10} height={550} src={vline} alt="vline" className="hidden md:flex w-auto h-[550px] self-center " />
       <FAQSection />
     </section>
   );

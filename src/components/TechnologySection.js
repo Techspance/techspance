@@ -40,7 +40,7 @@ const TechnologySection = () => {
           {techstacksInfo.map((stackInfo, index) => {
             return (
               <li
-                className="flex  text-dark-blue items-center font-bold space-x-2 text-sm "
+                className="flex  text-dark-blue items-center  space-x-2  "
                 key={index}
               >
                 <CiStar />

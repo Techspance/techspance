@@ -41,13 +41,13 @@ import BlogPaginate from './blogPaginate';
 //blogs api endpoint
 const url = './api/blogs';
 
-const page = () => {
+const Page = () => {
   const [blogsData, setBlogsData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [error, setError] = useState(null);
 
-  const url = 'http://localhost:3000/api/blogs'; // Ensure this URL is correct
+  const url = 'http://www.techspance.com/api/blogs'; // Ensure this URL is correct
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -337,4 +337,136 @@ const page = () => {
   );
 };
 
-export default page;
+
+export const sideBar = () =>{
+  return (
+    <aside className="right-side-panel flex flex-col gap-4 w-full md:w-[30%] py-2">
+      <div className="mb-4">
+        <h4 className="font-bold">SEARCH</h4>
+        <input
+          type="text"
+          placeholder="Search posts..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border rounded p-2 w-full"
+        />
+      </div>
+      <div className="mb-4">
+        <h2 class="font-bold text-xl my-1">
+          RECENT
+          <span className="text-primary"> POSTS</span>
+        </h2>
+        <ul>
+          {blogsData
+            .slice()
+            .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by date in descending order
+            .slice(0, 4) // Get the first 4 recent posts
+            .map((post, index) => (
+              <li
+                key={index}
+                className="flex items-center justify-between py-2 border-b-[1px]"
+              >
+                <div className="flex flex-row items-center">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-14 h-14 object-cover rounded"
+                  />
+                  <div className="ml-2">
+                    <h4 className="text-sm font-bold">{post.title}</h4>
+                    <p className="text-xs">{post.category}</p>
+                  </div>
+                </div>
+              </li>
+            ))}
+        </ul>
+      </div>
+      <div className="mb-4">
+        <h4 className="font-bold">Categories</h4>
+        {categories && (
+          <ul>
+            <li className="border-b-[1px]">
+              <button
+                onClick={() => setSelectedCategory("")}
+                className="text-start w-full px-1 py-2 rounded"
+              >
+                ALL
+                <span className="float-right">{blogsData.length}</span>
+              </button>
+            </li>
+            {categories.map((category, index) => (
+              <li key={index} className="border-b-[1px]">
+                <button
+                  onClick={() => setSelectedCategory(category)}
+                  className="text-start w-full px-1 py-2 rounded"
+                >
+                  {category}
+                  <span className="float-right">
+                    {categoryCounts[category]}
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div className="flex flex-col gap-3 rounded-3xl p-4 bg-slate-200 shadow-md">
+        <h4 className="font-bold">Stay Ahead with Techspance Insights</h4>
+        <p className="text-sm">
+          Get the Latest Tech Trends, Industry Insights, and Exclusive Updates -
+          Delivered Straight to Your Inbox
+        </p>
+        <form
+          method="post"
+          action="/#" // needs to be updated
+        >
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="border rounded p-2 w-full"
+          />
+          <button className="bg-primary text-white w-full py-2 mt-2 rounded">
+            Subscribe
+          </button>
+        </form>
+      </div>
+      <div className="font-bold">
+        SOCIAL
+        <ul className="flex flex-row gap-2 items-center self-center">
+          <li className="bg-white rounded-full p-2">
+            <a href="https://www.facebook.com/techspance/" target="_blank">
+              <FaFacebookF className="text-2xl" />
+            </a>
+          </li>
+          <li className="bg-white rounded-full p-2">
+            <a
+              href="https://www.linkedin.com/company/techspance-ltd/"
+              target="_blank"
+            >
+              <FaLinkedinIn className="text-2xl" />
+            </a>
+          </li>
+          <li className="bg-white rounded-full p-2">
+            <a href="https://github.com/Techspance" target="_blank">
+              <TbBrandGithubFilled className="text-2xl" />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div className="flex flex-col gap-4">
+        <h3 className="font-bold">
+          Popular<span className="text-primary"> Tags</span>
+        </h3>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((tag, index) => (
+            <li key={index} className="bg-white py-1 px-2 rounded text-center">
+              Tag {tag}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </aside>
+  );
+}
+
+export default Page;
