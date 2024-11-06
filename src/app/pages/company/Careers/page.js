@@ -36,7 +36,7 @@ useEffect(() => {
 }, []);
 
 
-  return <div>Careers</div>;
+  return <div className='pt-32' >Careers</div>;
 }
 
 export default Page

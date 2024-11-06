@@ -12,7 +12,6 @@ const Page = ({ params }) => {
 
   const id = use(params);
   const career_id = id.career_id;
-  console.log(career_id);
 
   const fetchCareers = async () => {
     try {
@@ -39,7 +38,7 @@ const Page = ({ params }) => {
     fetchCareers();
   }, []);
 
-  return <div>Careers</div>;
+  return <div className="pt-32" >Careers</div>;
 };
 
 export default Page;
