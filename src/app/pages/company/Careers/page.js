@@ -1,6 +1,9 @@
 "use client"
 import React, {useState, useEffect} from 'react'
-import { IoIosArrowDown } from "react-icons/io";
+import { RiArrowDownWideFill } from "react-icons/ri";
+import { CiCircleCheck } from "react-icons/ci";
+
+import FAQSection from '@/components/FAQSection';
 import Link from 'next/link'
 import {data} from "../../../../Databases/careers"
 
@@ -9,6 +12,31 @@ const localCareersData = data.data
 const Page = () => {
   const [careers, setCareers] = useState([]);
   const [loading, setLoading] = useState(false); // Add loading state
+  
+  // Current Openings, Show more button logic
+  const [displayedCount, setDisplayedCount] = useState(3); // Start with 3 displayed
+  const [allDisplayed, setAllDisplayed] = useState(false); // 
+
+  // FAQs display/hide content
+  const [isVisible, setVisibility] = useState(false);
+
+  const showMore = () => {
+    const newCount = displayedCount + 3;
+    setDisplayedCount(newCount);
+    if (newCount >= careers.length) {
+      setAllDisplayed(true); // Hide button when all items are displayed
+    }
+  };
+
+  const toggleVisibility = (event) => {
+    setVisibility(!isVisible)
+
+    const parent = event.target.parentNode;                    // Select parent of button
+    const nextSibling = parent.nextElementSibling;
+
+    console.log(nextSibling)
+    
+  }
 
   const fetchCareers = async () => {
     try {
@@ -17,11 +45,9 @@ const Page = () => {
       // const response = await fetch("https://www.techspance.com/api/careers");
       const data = await response.json();
 
-      if (data.success) {
-        
+      if (data.success) {        
         setCareers(data.data);
-        console.log(data)
-      } else {
+      } else { 
         console.error("Failed to fetch projects:", data.message);
         setCareers(localCareersData); // Fallback to local data
       }
@@ -30,39 +56,46 @@ const Page = () => {
       setCareers(localCareersData); // Fallback to local data on error
     } finally {
       setLoading(false); // Loading finished
+
+      // If the total number of careers is <= initial displayedCount, set allDisplayed to true to hide the showMore button
+      if (data.data.length <= displayedCount) {
+        setAllDisplayed(true);
+      }
     }
   };
 
-  // Fetch featuredProjects on component mount
+  // Fetch jobs positions on component mount
   useEffect(() => {
     fetchCareers();
   }, []);
 
-  return <div>
+  
+  return <div className='pt-32 flex flex-col items-center'>
     {/* Restricted width container */}
-    <div className='w-[80%] flex flex-col items-center'>
+    <div className='md:w-[80%] flex flex-col space-y-9 p-7'>
       {/* Heading Section */}
-      <div className='flex flex-col items-center'>
-        <h1>Join Our Team at Techspance</h1>
-        <span>Innovate, Inspire, and Grow with Us</span>
-        <p>At Techspance, we’re building the future of technology with a team that’s passionate, skilled, and committed to creating impactful solutions. We’re not just a company; we’re a community where your talents will be valued, your ideas heard, and your growth supported.</p>
-        <Link className="font-bold border border-white px-[40px] py-2 rounded-3xl" href="#open-positions">Explore Open Positions</Link>
+      <div className='flex flex-col items-center space-y-5 p-[20px] py-[40px] md:px-[100px] md:py-[80px] bg-background rounded-2xl text-center'>
+        <h1 className="text-darker-blue text-2xl md:text-4xl font-bold capitalize">Join Our Team at Techspance</h1>
+        <span className='text-lighter-blue text-md capitalize'>Innovate, Inspire, and Grow with Us</span>
+        <p className="md:text-lg">At Techspance, we’re building the future of technology with a team that’s passionate, skilled, and committed to creating impactful solutions. We’re not just a company; we’re a community where your talents will be valued, your ideas heard, and your growth supported.</p>
+        <Link className="w-[100%] md:w-[auto] text-lighter-blue text-md border border-primary px-[40px] py-2 rounded-3xl" href="#open-positions">Explore Open Positions</Link>
       </div>
+
       {/* Our Culture */}
-      <div>
-        <div>
-          <h2>Our Culture</h2>
-          <span>Empowering Growth, Driving Innovation</span>
+      <div className='flex flex-col md:flex-row md:space-x-20 space-y-5'>
+        <div className='flex flex-col space-y-1'>
+          <h2 className="text-darker-blue text-xl md:text-3xl font-bold capitalize">Our Culture</h2>
+          <span className='text-lighter-blue text-md capitalize'>Empowering Growth, Driving Innovation</span>
           <p>At Techspance, our culture is built on trust, collaboration, and a shared mission to create technology that empowers businesses. We believe in fostering an inclusive environment where everyone’s voice matters. Here, you’ll work with a team that values creativity, respect, and resilience. We invest in your growth through continuous learning opportunities, mentorship, and challenging projects that let you put your skills to work and make a difference.</p>
         </div>
-        <div>
+        <div className='p-[15px] py-[15px] leading-7 bg-[#EAEEF2] border-b-[5px] border-[#00000025] shadow-lg rounded-2xl text-lighter-blue'>
           <p>“A Journey of Growth and Innovation”</p>
           <p>"Starting as an intern at Techspance, I felt welcomed and empowered from day one. I’ve grown both technically and professionally, thanks to the supportive team and mentorship here. The collaborative culture inspires me to innovate and continuously learn. Techspance is more than just a workplace; it’s a community where every effort is valued and celebrated."</p>
         </div>
       </div>
       {/* Why Work at Techspance? */}
-      <div>
-        <h2>Why Work at Techspance?</h2>
+      <div className='md:w-[75%] flex flex-col space-y-3'>
+        <h2 className="text-darker-blue text-xl md:text-3xl font-bold capitalize">Why Work at Techspance?</h2>
         <ul className="flex flex-col space-y-5">
           <li>
             <div className="flex space-x-3 items-center text-lighter-blue text-xl">
@@ -94,17 +127,41 @@ const Page = () => {
           </li>
         </ul>
       </div>
+      
       {/* Current Openings */}
-      <div id='open-positions'>
-        <h2>Current Openings</h2>
-        <p>Explore the positions below to see how you can make an impact.</p>
-        <div>
-          <div></div>
-        </div>
+      <div className="flex flex-col space-y-5" id='open-positions'>
+        <h2 className="text-darker-blue text-xl md:text-3xl font-bold capitalize">Current Openings</h2>
+        <p className='text-lighter-blue'>Explore the positions below to see how you can make an impact.</p>
+          {loading ? 
+          (<span>Loading ...</span>) : 
+          /* Grid of three columns */
+          (<div className='grid lg:grid-cols-3 grid-flow-row gap-6'>
+          {
+            careers.slice(0, displayedCount).map((position, i) => {
+            // Job card
+            return (<div key={i} className='p-[15px] border-[1.5px] border-[#00000025] shadow-lg rounded-2xl flex flex-col space-y-1'>
+              <h3 className="text-darker-blue font-bold capitalize">{position.title}</h3>
+              <div className='flex space-x-3'>
+              <p className='text-sm leading-6'><span className="text-lighter-blue font-bold capitalize">Location: </span>{position.location}</p>
+              </div>
+              <div className='flex space-x-3'>
+              <p className='text-sm leading-6'><span className="text-lighter-blue font-bold capitalize">Employment Type: </span>{position.employment_type}</p>
+              </div>
+              <div className='flex space-x-3'>
+                <p className='text-sm leading-6'><span className="text-lighter-blue font-bold capitalize">Role Summary:</span> {position.summary}</p>
+              </div>
+            </div>)
+          })}
+        </div>)
+        }
+        {        console.log(careers)        }        
+        {allDisplayed ? '' : (<button onClick={showMore} className="w-full md:w-[fit-content] self-center text-center bg-primary px-[40px] text-white py-2 rounded-3xl">Show More</button>)}
+
       </div>
+      
       {/* Our Hiring Process */}
-      <div>
-        <h2>Our Hiring Process</h2>
+      <div className="md:w-[75%] flex flex-col space-y-3">
+        <h2 className="text-darker-blue text-xl md:text-3xl font-bold capitalize">Our Hiring Process</h2>
         <p>We’ve designed our hiring process to be clear, supportive, and efficient.</p>
         <ul className="flex flex-col space-y-5">
           <li>
@@ -142,39 +199,21 @@ const Page = () => {
     {/* Full width content */}
 
     {/* FAQs */}
-    <div>
-      <h2>FAQS</h2>
-
-      <div>
-        <div>
-          <h5>Does Techspance offer remote work opportunities?</h5>
-          <IoIosArrowDown />
-        </div>
-        <div>
-          <h5>What career growth opportunities does Techspance provide?</h5>
-          <IoIosArrowDown />
-        </div>
-        <div>
-          <h5>How long does the recruitment process usually take?</h5>
-          <IoIosArrowDown />
-        </div>
-        <div>
-          <h5>What kind of projects will I work on?</h5>
-          <IoIosArrowDown />
-        </div>
-      </div>
-      <Link>See More</Link>
+    <div className="w-full p-7 bg-background">
+      <FAQSection />
+      
     </div>
+
     
     
     
-    <div className="w-full h-auto bg-primary flex flex-col items-center justify-center space-y-5 px-[10%] py-[1.66rem] text-white text-center text-opacity-90 md:px-[25%]">
-      <h3 className="text-2xl font-bold capitalize">Ready to transform your business with cutting-edge digital solutions?</h3>
+    <div className="w-full h-auto bg-primary flex flex-col items-center justify-center space-y-5 px-[10%] py-[5%] text-white text-center text-opacity-90 md:px-[25%]">
       <p className="text-xl font-light">
         Are you ready to take the next step in your career and join a team that values innovation, creativity, and growth? We’d love to hear from you!  
       </p>
-      <Link className="font-bold border border-white px-[40px] py-2 rounded-3xl" href="#open-positions">View Open Positions</Link>
-    </div>;
+      <Link className="w-[100%] md:w-[auto] font-bold border border-white px-[40px] py-2 rounded-3xl" href="#open-positions">View Open Positions</Link>
+    </div>
+
   </div>
 }
 

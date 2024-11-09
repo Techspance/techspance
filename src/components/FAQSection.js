@@ -54,18 +54,18 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="Technology-header min-w-[320px] max-w-[450px] bg-background  ">
+    <div className="Technology-header md:w-[75%] md:ml-[10%]">
       <h2 className="font-roboto font-bold text-darker-blue text-2xl md:text-3xl mb-5 ">
         Techspance's <span className="text-primary italic">FAQs</span>
       </h2>
 
-      <div className="w-full max-w-md mx-auto  mb-2 flex justify-center flex-wrap  ">
+      <div className="w-full flex justify-center flex-wrap">
         {faqs.map((faq, index) => (
-          <div key={index} className="   shadow ">
+          <div key={index} className="w-full pb-1">
             {/* Clickable Question */}
             <button
               onClick={() => handleToggle(index)}
-              className={`w-full text-left p-4 font-bold text-darker-blue text-md focus:outline-none flex justify-between items-center border border-collapse ${
+              className={`w-full text-left p-4 font-bold text-darker-blue text-md focus:outline-none flex justify-between items-center shadow border border-[#00000025] rounded-2xl border-collapse ${
                 openIndex === index
                   ? "bg-background text-lg border-b-0 text-dark-blue"
                   : ""
@@ -82,16 +82,16 @@ const FAQSection = () => {
             <div
               className={`transition-all duration-300 overflow-hidden ${
                 openIndex === index
-                  ? "max-h-40 border border-collapse bg-white"
+                  ? "max-h-40 border border-[#00000025] p-3 rounded-2xl border-collapse bg-white pl-0 p-3"
                   : "max-h-0"
               }`}
             >
-              <p className=" pl-4 pr-5 pb-4">{faq.answer}</p>
+              <p className="pl-4 pr-5">{faq.answer}</p>
             </div>
           </div>
         ))}
       </div>
-      <Link href="./pages/company/faqs" className="flex items-center text-dark-blue hover:text-primary text-lg w-content " >
+      <Link href="./pages/company/faqs" className="flex items-center text-dark-blue hover:underline text-primary w-content " >
         See More <IoIosArrowForward className="mt-1.5 ml-2" />{" "}
       </Link>
     </div>
