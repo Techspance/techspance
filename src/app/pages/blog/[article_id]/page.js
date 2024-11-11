@@ -70,7 +70,8 @@ const Page = ({ params }) => {
     });
   };
 
-  const { article_id } = use(params);
+  const id  = use(params);
+  const article_id = id.article_id;
 
   const blogs = data.data;
 

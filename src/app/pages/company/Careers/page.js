@@ -70,7 +70,7 @@ const Page = () => {
   }, []);
 
   
-  return <div className='pt-32 flex flex-col items-center'>
+  return (<div className='pt-32 flex flex-col items-center'>
     {/* Restricted width container */}
     <div className='md:w-[80%] flex flex-col space-y-9 p-7'>
       {/* Heading Section */}
@@ -213,8 +213,8 @@ const Page = () => {
       </p>
       <Link className="w-[100%] md:w-[auto] font-bold border border-white px-[40px] py-2 rounded-3xl" href="#open-positions">View Open Positions</Link>
     </div>
+  </div>)
 
-  </div>
 }
 
 export default Page
