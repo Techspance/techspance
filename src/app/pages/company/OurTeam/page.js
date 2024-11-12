@@ -49,7 +49,7 @@ const TeamPage = () => {
 
   return (
     <div className="  p-5  md:px-[140px] md:py-10 bg-white ">
-      <section className=" header max-w-[1200px]  flex flex-col justify-center mt-24 mx-auto text-center ">
+      <section className=" header max-w-[1200px]  flex flex-col justify-center mx-auto text-center ">
         <h1 className=" font-roboto font-bold text-3xl text-darker-blue mb-2 ">
           Meet Our Dedicated Team
         </h1>

@@ -325,7 +325,7 @@ const Page = ({ params }) => {
           </section>
         </div>
       ) : (
-        <div className="pt-32 flex justify-center items-center pb-32">
+        <div className=" flex justify-center items-center ">
           <p className="text-2xl text-center text-darker-blue animate-pulse">
             project detail not found...
           </p>

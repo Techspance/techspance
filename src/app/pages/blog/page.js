@@ -102,7 +102,7 @@ const Page = () => {
 
   return (
     <div className="blog-page p-5 md:px-[140px] md:py-10 text-[#0e2f56] bg-background">
-      <section className="header-section text-center mt-24 mx-auto max-w-[650px]">
+      <section className="header-section text-center  mx-auto max-w-[650px]">
         <h2 className="font-bold text-2xl my-1">
           Our
           <span className="text-primary"> Blogs</span>

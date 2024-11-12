@@ -70,7 +70,7 @@ const Page = () => {
   }, []);
 
   
-  return (<div className='pt-32 flex flex-col items-center'>
+  return (<div className=' flex flex-col items-center'>
     {/* Restricted width container */}
     <div className='md:w-[80%] flex flex-col space-y-9 p-7'>
       {/* Heading Section */}
@@ -78,7 +78,7 @@ const Page = () => {
         <h1 className="text-darker-blue text-2xl md:text-4xl font-bold capitalize">Join Our Team at Techspance</h1>
         <span className='text-lighter-blue text-md capitalize'>Innovate, Inspire, and Grow with Us</span>
         <p className="md:text-lg">At Techspance, we’re building the future of technology with a team that’s passionate, skilled, and committed to creating impactful solutions. We’re not just a company; we’re a community where your talents will be valued, your ideas heard, and your growth supported.</p>
-        <Link className="w-[100%] md:w-[auto] text-lighter-blue text-md border border-primary px-[40px] py-2 rounded-3xl" href="#open-positions">Explore Open Positions</Link>
+        <Link className="w-[100%] md:w-[auto] text-lighter-blue text-md border border-primary px-[40px] py-2 rounded-3xl hover:bg-primary hover:text-white transition-all duration-300 " href="/pages/company/careers/#open-positions">Explore Open Positions</Link>
       </div>
 
       {/* Our Culture */}
@@ -139,8 +139,8 @@ const Page = () => {
           {
             careers.slice(0, displayedCount).map((position, i) => {
             // Job card
-            return (<div key={i} className='p-[15px] border-[1.5px] border-[#00000025] shadow-lg rounded-2xl flex flex-col space-y-1'>
-              <h3 className="text-darker-blue font-bold capitalize">{position.title}</h3>
+            return (<Link href={`/pages/company/careers/${position._id}`}> <div key={i} className='p-[15px] border-[1.5px] border-[#00000025] shadow-lg rounded-2xl flex flex-col space-y-1'>
+              <h3 className="text-darker-blue font-bold capitalize line-clamp-1 ">{position.title}</h3>
               <div className='flex space-x-3'>
               <p className='text-sm leading-6'><span className="text-lighter-blue font-bold capitalize">Location: </span>{position.location}</p>
               </div>
@@ -148,9 +148,9 @@ const Page = () => {
               <p className='text-sm leading-6'><span className="text-lighter-blue font-bold capitalize">Employment Type: </span>{position.employment_type}</p>
               </div>
               <div className='flex space-x-3'>
-                <p className='text-sm leading-6'><span className="text-lighter-blue font-bold capitalize">Role Summary:</span> {position.summary}</p>
+                <p className='text-sm leading-6 line-clamp-6'><span className="text-lighter-blue font-bold capitalize">Role Summary:</span> {position.summary}</p>
               </div>
-            </div>)
+            </div></Link>)
           })}
         </div>)
         }
@@ -211,7 +211,7 @@ const Page = () => {
       <p className="text-xl font-light">
         Are you ready to take the next step in your career and join a team that values innovation, creativity, and growth? We’d love to hear from you!  
       </p>
-      <Link className="w-[100%] md:w-[auto] font-bold border border-white px-[40px] py-2 rounded-3xl" href="#open-positions">View Open Positions</Link>
+      <Link className="w-[100%] md:w-[auto] font-bold border border-white px-[40px] py-2 rounded-3xl hover:bg-dark-blue hover:text-white transition-all duration-300 hover:border-dark-blue " href="#open-positions">View Open Positions</Link>
     </div>
   </div>)
 

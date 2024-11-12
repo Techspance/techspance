@@ -3,7 +3,7 @@ import React from 'react';
 const page = () =>  {
     return (
         // Full width container
-        <div className='w-full flex flex-col items-center pt-32 pb-9 space-y-7'>
+        <div className='w-full flex flex-col items-center pb-9 space-y-7'>
             <h1 className="text-darker-blue text-2xl md:text-3xl font-bold capitalize">Privacy Policy</h1>
             {/* Restricted width container: 65% */}
             <div className='md:w-[65%] md:ml-[7rem] mx-[2rem] flex flex-col md:self-start space-y-7'>

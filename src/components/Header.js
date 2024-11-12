@@ -53,7 +53,7 @@ const Header = () => {
 
   return (
     <header className="bg-primary p-5  md:py-10 md:px-[140px]  ">
-      <div className="mt-24 flex flex-wrap justify-between  ">
+      <div className=" flex flex-wrap justify-between  ">
         <section className="min-w-[320px] max-w-[420px] flex flex-col space-y-5 md:space-y-10 mb-5  ">
           <div className="text-white flex flex-col space-y-3 md:space-y-5 w-full">
             <h1 className="text-3xl font-roboto font-bold w-full">

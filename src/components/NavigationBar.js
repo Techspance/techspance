@@ -11,7 +11,7 @@ export const navItems = [
   { name: "Home", href: "/", id: 1 },
   {
     name: "Company",
-    href: "/pages/company/aboutus",
+    href: "/pages/company/about",
     id: 2,
     hasDropdown: true,
   }, // Add hasDropdown property
@@ -22,11 +22,13 @@ export const navItems = [
 ];
 
 const dropdownItems = [
-  { name: "About Us", href: "/pages/company/aboutus", id: 1 },
+  { name: "About Us", href: "/pages/company/about", id: 1 },
   { name: "Our Team", href: "/pages/company/ourteam", id: 2 },
-  { name: "Our History", href: "/pages/company/ourhistory", id: 3 },
+  // { name: "Our History", href: "/pages/company/ourhistory", id: 3 },
   { name: "FAQs", href: "/pages/company/faqs", id: 4 },
   { name: "Careers", href: "/pages/company/careers", id: 5 },
+  { name: "Privacy Policy", href: "/pages/company/privacypolicy", id: 6 },
+  { name: "Terms And Conditions", href: "/pages/company/termsandconditions", id: 7 },
 ];
 
 const Header = () => {
@@ -65,7 +67,7 @@ const Header = () => {
   return (
     <>
       <header
-        className={`bg-primary min-h-24 max-h-full w-full px-5    md:h-24 md:px-[140px] sm:px-[70px]   pt-6 shadow  fixed z-50 transition-all duration-1000 ${
+        className={`bg-primary min-h-24 max-h-full w-full px-5    md:h-24 md:px-[140px] sm:px-[70px]   pt-6 shadow  sticky top-0 z-50 transition-all duration-1000 ${
           showMenu ? "" : ""
         } `}
       >
@@ -99,7 +101,7 @@ const Header = () => {
                   {/* Company DropDown */}
                   {hasDropdown && showDropdown && (
                     <div
-                      className={` absolute top-full left-0 p-5 bg-silver w-[200px]  flex flex-col  transition-all duration-1000  `}
+                      className={` absolute top-full left-0 p-5 bg-background w-[200px]  flex flex-col  transition-all duration-1000  `}
                     >
                       {dropdownItems.map((dropdownItem) => (
                         <Link
@@ -172,7 +174,7 @@ const Header = () => {
                       hasDropdown ? () => setShowDropdown(true) : undefined
                     }
                     onMouseOut={() => setShowDropdown(false)}
-                    className="flex flex-col pl-5 bg-silver transition-all duration-1000 "
+                    className="flex flex-col pl-5 bg-background transition-all duration-1000 "
                   >
                     {dropdownItems.map((dropdownItem) => (
                       <Link

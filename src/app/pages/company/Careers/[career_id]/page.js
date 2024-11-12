@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, use } from "react";
 import "./styles.css";
+import DOMPurify from "dompurify";
 
 import { data } from "../../../../../Databases/careers";
 
@@ -38,7 +39,23 @@ const Page = ({ params }) => {
     fetchCareers();
   }, []);
 
-  return <div className="pt-32" >Careers</div>;
+ return loading ? (
+   <h2 className="career-content text-2xl text-darker-blue mx-auto  ">
+     Loading...
+   </h2>
+ ) : (
+   <div
+     className=" career-content flex flex-col space-y-2 -mb-0  "
+     dangerouslySetInnerHTML={{
+       __html: DOMPurify.sanitize(
+         careers.find((career) => career._id === career_id)?.detail ||
+           "career detail not found"
+       ),
+     }}
+   />
+ );
+
+
 };
 
 export default Page;

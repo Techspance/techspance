@@ -110,7 +110,7 @@ const Page = ({ params }) => {
 
   return (
     <section className=" p-5 md:px-[100px] md:py-10 bg-white ">
-      <div className=" article-hero-section mt-28 w-full mx-auto  ">
+      <div className=" article-hero-section  w-full mx-auto  ">
         <h1 className=" font-roboto font-bold text-3xl text-darker-blue text-center ">
           {article.title}
         </h1>

@@ -91,7 +91,7 @@ const FAQSection = () => {
           </div>
         ))}
       </div>
-      <Link href="./pages/company/faqs" className="flex items-center text-dark-blue hover:underline text-primary w-content " >
+      <Link href="/pages/company/faqs" className="flex items-center text-dark-blue hover:underline text-primary w-content " >
         See More <IoIosArrowForward className="mt-1.5 ml-2" />{" "}
       </Link>
     </div>

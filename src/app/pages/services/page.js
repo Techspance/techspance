@@ -504,7 +504,7 @@ const processes = [
 const Page = () => {
   return (
     <div className="p-5 md:px-[140px] md:py-10 bg-background scroll-smooth ">
-      <section className="page-intro mt-24 mx-auto mb-5">
+      <section className="page-intro  mx-auto mb-5">
         <h1 className="font-roboto font-bold text-3xl text-center text-darker-blue mb-5">
           Our Core <span className="text-primary italic">Services</span>
         </h1>

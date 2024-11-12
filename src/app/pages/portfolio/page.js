@@ -82,7 +82,7 @@ const Page = () => {
   return (
     <div className="bg-background p-5 md:px-[140px] md:py-10">
       {/* Header section */}
-      <section className="header mt-28 max-w-[800px] mx-auto text-center">
+      <section className="header  max-w-[800px] mx-auto text-center">
         <h1 className="font-roboto font-bold text-darker-blue text-3xl mb-3">
           Our <span className="text-primary italic">Projects</span>
         </h1>

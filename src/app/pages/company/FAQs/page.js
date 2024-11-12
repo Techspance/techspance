@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const page = () => {
   return (
-    <div className="pt-32 flex flex-col space-y-7 items-center">
+    <div className=" flex flex-col space-y-7 items-center">
       {/* Page Headings */}
       <div className="w-[80%] flex flex-col space-y-5 text-center">
         <h1 className="text-darker-blue text-2xl md:text-3xl font-bold capitalize">Frequently Ask Questions</h1>

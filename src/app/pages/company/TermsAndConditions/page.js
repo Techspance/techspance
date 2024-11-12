@@ -4,7 +4,7 @@ import Link from "next/link";
 const page = () =>  {
     return (
         // Full width container
-        <div className='md:px-[3rem] px-[1.4rem] flex flex-col items-center justify-center pt-32 pb-9 space-y-7'>
+        <div className='md:px-[3rem] px-[1.4rem] flex flex-col items-center justify-center pb-9 space-y-7'>
             <h1 className="text-darker-blue text-2xl md:text-3xl font-bold">Terms and Conditions</h1>
             {/* // Restricted width container */}
             <div className='md:w-[70%] flex flex-col space-y-3'>

@@ -7,7 +7,7 @@ import heroImage from "src/assets/images/company/heroImage.png";
 
 
 const page = () => {
-  return <div className="pt-32 flex flex-col space-y-7 items-center">
+  return <div className=" flex flex-col space-y-7 items-center">
     {/* Restricted width content */}
     <div className="w-[80%] flex flex-col space-y-7 ">
       {/* Page Headings */}
