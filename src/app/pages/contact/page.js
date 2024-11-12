@@ -1,6 +1,6 @@
-"use client"; // Mark this component as a Client Component to use useState 
+"use client"; // Mark this component as a Client Component to use useState
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Link from "next/link";
 
 import { IoIosArrowDown } from "react-icons/io";
@@ -22,69 +22,62 @@ const helpDropdown = [
   "Custom software solutions",
 ];
 
-
-
 const Page = () => {
   //formData state
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    website: '',
-    helpTopic: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    website: "",
+    helpTopic: "",
+    message: "",
     agreement: false,
   });
-  
+
   // Handle the change in the fields
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
-  // // Resend API logic for sending contact form
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Handle form submission here
-  //   console.log('Form submitted:', formData);
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-   const handleSubmit = async (e) => {
-     e.preventDefault();
+    try {
+      const response = await fetch("/api/contactus", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-     try {
-       const response = await fetch("/api/contactus", {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-         },
-         body: JSON.stringify(formData),
-       });
+      const result = await response.json();
 
-       const result = await response.json();
+      if (result.success) {
+        alert(
+          "Thank you for submitting the form. Our team will review your message and get back to you soon."
+        );
+      } else {
+        alert("Failed to send message: " + result.error);
+      }
+    } catch (error) {
+      alert("Error: " + error.message);
+    }
 
-       if (result.success) {
-         alert("Your message has been sent sucessfully! You will here from us within 24 hours");
-       } else {
-         alert("Failed to send message: " + result.error);
-       }
-     } catch (error) {
-       alert("Error: " + error.message);
-     }
-
-     setFormData({
-       name: "",
-       email: "",
-       phone: "",
-       website: "",
-       helpTopic: "",
-       message: "",
-       agreement: false,
-     });
-   };
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      website: "",
+      helpTopic: "",
+      message: "",
+      agreement: false,
+    });
+  };
 
   // Html & CSS for the formData
   return (
@@ -183,7 +176,10 @@ const Page = () => {
               className="mr-2"
             />
             By submitting, you agree to the{" "}
-            <Link className="text-primary" href="/pages/company/termsandconditions">
+            <Link
+              className="text-primary"
+              href="/pages/company/termsandconditions"
+            >
               Terms & Conditons
             </Link>
           </label>
