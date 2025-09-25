@@ -11,81 +11,96 @@ import worldmap from "@/assets/images/worldmap.svg";
 
 const Footer = () => {
   return (
-    <footer className="w-full p-5 md:pl-[140px]  md:py-10 bg-slate-200 relative ">
+    <footer className="w-full p-5 md:pl-[140px] md:py-10 bg-slate-200 relative">
       <div>
         <div>
-          <div className="flex flex-col space-y-5 flex-wrap md:flex-row place-content-between sm:place-content-between items-start">
-            <div className="w-[320px] ">
-              <h3 className="font-bold text-darker-blue text-xl    mb-3 font-roboto">
+          <div className="flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-8 flex-wrap justify-between items-start">
+            {/* Company Info */}
+            <div className="max-w-xs">
+              <h3 className="font-bold text-darker-blue text-xl mb-3 font-roboto">
                 Techspance: Your Innovative Technology Partner
               </h3>
-              <p className="text-dark-blue text-md md: text-lg">
+              <p className="text-dark-blue text-base mb-4">
                 A leading startup delivering tailored IT solutions for
                 businesses worldwide. Empowering your business with custom
                 software, web development, and mobile app development.
               </p>
-              <div className="sIcons flex">
+              <div className="flex space-x-2">
                 <Link
                   target="_blank"
-                  href={`https://www.facebook.com/profile.php?id=61565308981633`}
-                  className="bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
+                  href="https://www.facebook.com/profile.php?id=61565308981633"
+                  className="bg-background p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
+                  aria-label="Facebook"
                 >
                   <FaFacebookF />
                 </Link>
                 <Link
                   target="_blank"
-                  href={`https://www.linkedin.com/company/techspance-ltd`}
-                  className="bg-background my-2 mx-1 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
+                  href="https://www.linkedin.com/company/techspance-ltd"
+                  className="bg-background p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
+                  aria-label="LinkedIn"
                 >
                   <FaLinkedinIn />
                 </Link>
-                {/* <Link
-                target="_blank"
-                  href={`#`}
-                  className="size-[32px] md:size-[48px] bg-silver flex justify-center items-center rounded-full hover:bg-darker-blue text-dark-blue hover:text-white"
-                >
-                  <FaXTwitter className="size-[16px] md:size-[24px] " />
-                </Link> */}
               </div>
             </div>
-            <div className="w-[320px] ">
-              <h3 className="font-bold text-darker-blue text-xl font-roboto mb-3 md:-mt-5">
+            {/* Information */}
+            <div className="max-w-xs">
+              <h3 className="font-bold text-darker-blue text-xl font-roboto mb-3">
                 Information
               </h3>
-              <p className="text-dark-blue text-sm md: text-md">
+              <address className="not-italic text-dark-blue text-base mb-2">
                 9a, Road 1, Aho Estate, Ajibode, Ibadan, 200284, Nigeria
+              </address>
+              <p className="text-dark-blue text-base mb-1">
+                <a href="tel:+2348144213665" className="hover:underline">
+                  +2348144213665
+                </a>
               </p>
-              <p className="text-dark-blue text-sm md: text-md">
-                +2348144213665
-              </p>
-              <p className="text-dark-blue text-sm md: text-md">
-                info@techspance.com
+              <p className="text-dark-blue text-base">
+                <a
+                  href="mailto:info@techspance.com"
+                  className="hover:underline"
+                >
+                  info@techspance.com
+                </a>
               </p>
             </div>
-            <div className="w-[150px] ">
-              <h3 className="font-bold text-darker-blue text-xl font-roboto mb-3 md:-mt-5 ">
+            {/* Useful Links */}
+            <div className="min-w-[150px]">
+              <h3 className="font-bold text-darker-blue text-xl font-roboto mb-3">
                 Useful Links
               </h3>
-              <nav className="flex flex-col">
-                {navItems.map((item) => {
-                  const { id, name, href, hasDropdown } = item;
-                  return (
-                    <Link
-                      className="text-dark-blue text-md hover:underline underline-offset-4 hover:text-darker-blue"
-                      key={id}
-                      href={href}
-                    >
-                      {name}
-                    </Link>
-                  );
-                })}
+              <nav className="flex flex-col space-y-1">
+                {[
+                  ...navItems,
+                  {
+                    id: "8",
+                    name: "Terms of Service",
+                    href: "/pages/terms_of_service",
+                  },
+                  {
+                    id: "7",
+                    name: "Policies",
+                    href: "/pages/policies",
+                  },
+                ].map(({ id, name, href }) => (
+                  <Link
+                    className="text-dark-blue text-base hover:underline underline-offset-4 hover:text-darker-blue"
+                    key={id}
+                    href={href}
+                  >
+                    {name}
+                  </Link>
+                ))}
               </nav>
             </div>
-            <div className="w-[250px]  ">
-              <h3 className="font-bold text-darker-blue text-xl mb-3 md:-mt-5  ">
+            {/* Services */}
+            <div className="min-w-[180px]">
+              <h3 className="font-bold text-darker-blue text-xl mb-3 font-roboto">
                 Services
               </h3>
-              <ul className="text-dark-blue text-md ">
+              <ul className="text-dark-blue text-base space-y-1">
                 <li>Product Design</li>
                 <li>Web Development</li>
                 <li>Mobile App Development</li>
@@ -94,29 +109,31 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="hidden md:flex">
+          {/* Divider */}
+          <div className="hidden md:block my-8">
             <Image src={hline} alt="horizontal line" />
           </div>
-          <div className="flex flex-col space-y-4 mt-4  sm:space-x-4 md:flex-row md:items-center  md:space-x-20  ">
+          {/* Footer Bottom */}
+          <div className="flex flex-col space-y-4 mt-4 md:flex-row md:items-center md:space-x-8">
             <Image src={f_logo} alt="Techspance logo" />
-
-            <div className="flex flex-wrap  text-sm text-dark-blue md:text-md items-center">
+            <div className="flex flex-wrap items-center text-sm text-dark-blue md:text-base space-x-2">
               <FaRegCopyright />
-              <p className="mr-1">
-                2024 Copyrights by{" "}
+              <span>
+                {new Date().getFullYear()}{" "}
                 <span className="font-bold text-darker-blue">
                   Techspance LTD.
-                </span>{" "}
-              </p>
-              <p>All Rights Reserved. </p>
+                </span>
+              </span>
+              <span>All Rights Reserved.</span>
             </div>
           </div>
         </div>
-        <div className="hidden md:flex justify-center items-center ">
+        {/* World Map */}
+        <div className="hidden md:flex justify-center items-center">
           <Image
             src={worldmap}
             alt="world map"
-            className=" size-[400px]  animate-spin-slow absolute top-5  z-30 "
+            className="size-[400px] animate-spin-slow absolute top-5 z-30"
           />
         </div>
       </div>

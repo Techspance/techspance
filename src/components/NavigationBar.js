@@ -17,7 +17,7 @@ export const navItems = [
   }, // Add hasDropdown property
   { name: "Services", href: "/pages/services", id: 3 },
   { name: "Portfolio", href: "/pages/portfolio", id: 4 },
-  { name: "Blog", href: "/pages/blog", id: 5 },
+  // { name: "Blog", href: "/pages/blog", id: 5 },
   { name: "Contact", href: "/pages/contact", id: 6 },
 ];
 
@@ -28,7 +28,11 @@ const dropdownItems = [
   { name: "FAQs", href: "/pages/company/faqs", id: 4 },
   { name: "Careers", href: "/pages/company/careers", id: 5 },
   { name: "Privacy Policy", href: "/pages/company/privacypolicy", id: 6 },
-  { name: "Terms And Conditions", href: "/pages/company/termsandconditions", id: 7 },
+  {
+    name: "Terms And Conditions",
+    href: "/pages/company/termsandconditions",
+    id: 7,
+  },
 ];
 
 const Header = () => {
