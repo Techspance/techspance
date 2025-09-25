@@ -19,7 +19,7 @@ import { FaFacebookF } from "react-icons/fa";
 
 import { data } from "../Databases/teams";
 
-const team = data.data
+const team = data.data;
 
 const getRandomData = (data, number) => {
   const shuffled = data.sort(() => 0.5 - Math.random());
@@ -27,8 +27,6 @@ const getRandomData = (data, number) => {
 };
 
 const localTeam = getRandomData(data.data, 3);
-
-
 
 export default function Home() {
   return (
@@ -134,8 +132,6 @@ const TeamSection = () => {
     </section>
   );
 };
-
-
 
 const TeamCard = ({ team }) => {
   const { name, title, image, bio, social_link } = team;

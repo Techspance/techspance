@@ -1,8 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 
-import { IoIosArrowDown, IoIosArrowUp, IoIosArrowForward } from "react-icons/io";
+import {
+  IoIosArrowDown,
+  IoIosArrowUp,
+  IoIosArrowForward,
+} from "react-icons/io";
 
 // <IoIosArrowDown />
 {
@@ -54,7 +58,7 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="Technology-header md:w-[75%] md:ml-[10%]">
+    <div className="Technology-header max-w-7xl  px-5 md:px-0 py-10 flex flex-col ">
       <h2 className="font-roboto font-bold text-darker-blue text-2xl md:text-3xl mb-5 ">
         Techspance's <span className="text-primary italic">FAQs</span>
       </h2>
@@ -91,7 +95,10 @@ const FAQSection = () => {
           </div>
         ))}
       </div>
-      <Link href="/pages/company/faqs" className="flex items-center text-dark-blue hover:underline text-primary w-content " >
+      <Link
+        href="/pages/company/faqs"
+        className="flex items-center text-dark-blue hover:underline text-primary w-content "
+      >
         See More <IoIosArrowForward className="mt-1.5 ml-2" />{" "}
       </Link>
     </div>
