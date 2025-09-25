@@ -27,11 +27,12 @@ const dropdownItems = [
   // { name: "Our History", href: "/pages/company/ourhistory", id: 3 },
   { name: "FAQs", href: "/pages/company/faqs", id: 4 },
   { name: "Careers", href: "/pages/company/careers", id: 5 },
-  { name: "Privacy Policy", href: "/pages/company/privacypolicy", id: 6 },
+  { name: "Policies", href: "/pages/policies", id: 6 },
+  { name: "Privacy Policy", href: "/pages/company/privacypolicy", id: 7 },
   {
-    name: "Terms And Conditions",
-    href: "/pages/company/termsandconditions",
-    id: 7,
+    name: "Terms of Service",
+    href: "/pages/terms_of_service",
+    id: 8,
   },
 ];
 
