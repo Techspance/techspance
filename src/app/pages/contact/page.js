@@ -32,6 +32,8 @@ const Page = () => {
     helpTopic: "",
     message: "",
     agreement: false,
+    _gotcha: "",
+    _timestamp: Date.now(),
   });
 
   // Handle the change in the fields
@@ -46,6 +48,18 @@ const Page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Client-side anti-spam heuristic check
+    const trimmedMessage = formData.message.trim();
+    if (/^\d+$/.test(trimmedMessage)) {
+      alert("Please enter a valid message description instead of just numbers.");
+      return;
+    }
+
+    if (trimmedMessage.length < 5) {
+      alert("Please enter at least 5 characters for your message.");
+      return;
+    }
+
     try {
       const response = await fetch("/api/contactus", {
         method: "POST",
@@ -59,10 +73,11 @@ const Page = () => {
 
       if (result.success) {
         alert(
-          "Thank you for submitting the form. Our team will review your message and get back to you soon."
+          result.message ||
+            "Thank you for submitting the form. Our team will review your message and get back to you soon."
         );
       } else {
-        alert("Failed to send message: " + result.error);
+        alert("Failed to send message: " + (result.error || "Unknown error"));
       }
     } catch (error) {
       alert("Error: " + error.message);
@@ -76,6 +91,8 @@ const Page = () => {
       helpTopic: "",
       message: "",
       agreement: false,
+      _gotcha: "",
+      _timestamp: Date.now(),
     });
   };
 
@@ -110,6 +127,27 @@ const Page = () => {
           onSubmit={handleSubmit}
           className="flex flex-wrap justify-between space-y-2 w-full rounded-2xl "
         >
+          {/* Invisible Honeypot Field for Spam Bots */}
+          <div
+            style={{
+              position: "absolute",
+              left: "-9999px",
+              opacity: 0,
+              height: 0,
+              overflow: "hidden",
+            }}
+            aria-hidden="true"
+          >
+            <input
+              type="text"
+              name="_gotcha"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData._gotcha}
+              onChange={handleChange}
+            />
+          </div>
+
           <input
             type="text"
             name="name"

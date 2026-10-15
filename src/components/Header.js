@@ -10,6 +10,7 @@ const Header = () => {
   const [consultationForm, setConsultationForm] = useState({
     email: "",
     category: "",
+    _gotcha: "",
   });
 
   const handleChange = (e) => {
@@ -73,6 +74,27 @@ const Header = () => {
             onSubmit={handleSubmit}
             className="flex flex-col space-y-3 "
           >
+            {/* Invisible Honeypot */}
+            <div
+              style={{
+                position: "absolute",
+                left: "-9999px",
+                opacity: 0,
+                height: 0,
+                overflow: "hidden",
+              }}
+              aria-hidden="true"
+            >
+              <input
+                type="text"
+                name="_gotcha"
+                tabIndex={-1}
+                autoComplete="off"
+                value={consultationForm._gotcha}
+                onChange={handleChange}
+              />
+            </div>
+
             <div className="flex   flex-wrap items-center justify-center  ">
               <div className="relative text-darker-blue hover:text-dark-blue focus:text-dark-blue ">
                 <MdOutlineEmail
